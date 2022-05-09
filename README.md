@@ -1,6 +1,18 @@
+# Sobre
+###### Quem, quando, onde e porque?
 Arquiteto de aplicações web, orientador e especialista em codificação limpa, com sólida experiência em refatoração de código legado, cujo objetivo é promover estruturas escaláveis que visam aprimoramento, otimização e performance. Proficiente em todo o ciclo de vida da aplicação.
 
-🏷️ #CleanCode #SOLID #CleanArchitecture #DesignPatterns #BestPractice #FullStackDeveloper #Benchmark #Profiler #TangibleSkill #HardSkill #SoftSkill
+🏷️ [#CleanCode](https://www.linkedin.com/feed/hashtag/cleancode/) 
+[#CleanArchitecture ](https://www.linkedin.com/feed/hashtag/CleanArchitecture/) 
+[#SOLID ](https://www.linkedin.com/feed/hashtag/SOLID/) 
+[#DesignPatterns ](https://www.linkedin.com/feed/hashtag/DesignPatterns/) 
+[#BestPractice ](https://www.linkedin.com/feed/hashtag/BestPractice/) 
+[#FullStackDeveloper ](https://www.linkedin.com/feed/hashtag/FullStackDeveloper/) 
+[#Benchmark ](https://www.linkedin.com/feed/hashtag/Benchmark/) 
+[#Profiler ](https://www.linkedin.com/feed/hashtag/Profiler/) 
+[#TangibleSkill ](https://www.linkedin.com/feed/hashtag/TangibleSkill/) 
+[#HardSkill ](https://www.linkedin.com/feed/hashtag/HardSkill/) 
+[#SoftSkill](https://www.linkedin.com/feed/hashtag/SoftSkill/) 
 
 
 
