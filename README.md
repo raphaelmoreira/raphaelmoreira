@@ -24,16 +24,18 @@
 >🏷️ #DotNet #DotNetFramework #DotNetCore #AspNet #MVC #CSharp #EntityFramework #WebAPI #SQL #SQLServer #Dapper #Python #Javascript #jQuery #KendoUI #CSS #BI #PowerBI
 
 
+## Atuação
+>
+>Atuou fortemente em provas de conceito, sendo acionado por analistas e gerentes, a fim de viabilizar novos produtos e integrações. Liderou tecnicamente time de desenvolvedores, atuando também como revisor de código e mentoria de boas práticas, além de participar da adoção, configuração e sustentação de projetos sob o ambiente Azure DevOps.
+>
+>🏷️ #POC #TechLead #CodeReview #AzureDevOps #DevOps #MVP
 
-Atuou fortemente em provas de conceito, sendo acionado por analistas e gerentes, a fim de viabilizar novos produtos e integrações. Liderou tecnicamente time de desenvolvedores, atuando também como revisor de código e mentoria de boas práticas, além de participar da adoção, configuração e sustentação de projetos sob o ambiente Azure DevOps.
 
-🏷️ #POC #TechLead #CodeReview #AzureDevOps #DevOps #MVP
-
-
-
-Faz análise de pontos de função e especificações técnicas junto ao cliente, com proficiência de negócios nas áreas de CRM, Automação da Força de Vendas, Sistemas Hospitalares, Indústria Farmacêutica e Licitações Públicas Governamentais.
-
-🏷️ #APF
+## Análise
+>
+>Faz análise de pontos de função e especificações técnicas junto ao cliente, com proficiência de negócios nas áreas de CRM, Automação da Força de Vendas, Sistemas Hospitalares, Indústria Farmacêutica e Licitações Públicas Governamentais.
+>
+>🏷️ #APF
 
 
 
