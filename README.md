@@ -34,10 +34,16 @@ Faz análise de pontos de função e especificações técnicas junto ao cliente
 
 
 
-Por fim, já participou de:
+## Projetos legados
+>
+>🪓 Projetos legados elaborados em ASP.NET WebForms, Web Services (ASMX), Report Viewer, Crystal Report e o finado Flex Builder (ActionScript); 
+>
+>🛠 Integrações sistêmicas para Oracle, MySQL, Firebird, SQLite, IndexedDB e Document Database/NoSQL (MongoDB); 
+>
+>⚔️ Aplicações móveis em Android (Java, C# com Xamarin e Cordova/Phonegap), iOS (Objective-C, C# com Xamarin e Cordova/Phonegap) e Windows Phone.
 
-🪓 Projetos legados elaborados em ASP.NET WebForms, Web Services (ASMX), Report Viewer, Crystal Report e o finado Flex Builder (ActionScript); 
-
-🛠 Integrações sistêmicas para Oracle, MySQL, Firebird, SQLite, IndexedDB e Document Database/NoSQL (MongoDB); 
-
-⚔️ Aplicações móveis em Android (Java, C# com Xamarin e Cordova/Phonegap), iOS (Objective-C, C# com Xamarin e Cordova/Phonegap) e Windows Phone.
+## Links úteis
+>- [Can I use?](https://caniuse.com/);
+>- [NET Fiddle](https://dotnetfiddle.net/);
+>- [SharpLab](https://sharplab.io/);
+>- [Microsoft | Referencias ao código-fonte](https://referencesource.microsoft.com/)
