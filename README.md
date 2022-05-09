@@ -1,24 +1,27 @@
-# Sobre
-###### Quem, quando, onde e porque?
-Arquiteto de aplicações web, orientador e especialista em codificação limpa, com sólida experiência em refatoração de código legado, cujo objetivo é promover estruturas escaláveis que visam aprimoramento, otimização e performance. Proficiente em todo o ciclo de vida da aplicação.
+# Visão Geral
 
-🏷️ [#CleanCode](https://www.linkedin.com/feed/hashtag/cleancode/) 
-[#CleanArchitecture ](https://www.linkedin.com/feed/hashtag/CleanArchitecture/) 
-[#SOLID ](https://www.linkedin.com/feed/hashtag/SOLID/) 
-[#DesignPatterns ](https://www.linkedin.com/feed/hashtag/DesignPatterns/) 
-[#BestPractice ](https://www.linkedin.com/feed/hashtag/BestPractice/) 
-[#FullStackDeveloper ](https://www.linkedin.com/feed/hashtag/FullStackDeveloper/) 
-[#Benchmark ](https://www.linkedin.com/feed/hashtag/Benchmark/) 
-[#Profiler ](https://www.linkedin.com/feed/hashtag/Profiler/) 
-[#TangibleSkill ](https://www.linkedin.com/feed/hashtag/TangibleSkill/) 
-[#HardSkill ](https://www.linkedin.com/feed/hashtag/HardSkill/) 
-[#SoftSkill](https://www.linkedin.com/feed/hashtag/SoftSkill/) 
+## Apresentação
+>
+>Arquiteto de aplicações web, orientador e especialista em codificação limpa, com sólida experiência em refatoração de código legado, cujo objetivo é promover estruturas escaláveis que visam aprimoramento, otimização e performance. Proficiente em todo o ciclo de vida da aplicação.
+>
+>🏷️ [#cleancode](https://www.linkedin.com/feed/hashtag/cleancode/) 
+>[#cleanarchitecture ](https://www.linkedin.com/feed/hashtag/cleanarchitecture/) 
+>[#solid ](https://www.linkedin.com/feed/hashtag/solid/) 
+>[#designpatterns ](https://www.linkedin.com/feed/hashtag/designpatterns/) 
+>[#bestpractice ](https://www.linkedin.com/feed/hashtag/bestpractice/) 
+>[#fullstackdeveloper ](https://www.linkedin.com/feed/hashtag/fullstackdeveloper/) 
+>[#benchmarkdotnet ](https://www.linkedin.com/feed/hashtag/benchmarkdotnet/) 
+>[#sqlprofiler ](https://www.linkedin.com/feed/hashtag/sqlprofiler/) 
+>[#tangibleskill ](https://www.linkedin.com/feed/hashtag/tangibleskill/) 
+>[#hardskill ](https://www.linkedin.com/feed/hashtag/hardskill/) 
+>[#softskill](https://www.linkedin.com/feed/hashtag/softskill/) 
 
 
-
-Há 17 anos trabalha com a plataforma Microsoft .NET Framework, com vivência diária em .NET Core, ASP.NET MVC, C#, Entity Framework, WebAPI, SQL Server (consultas performáticas), Dapper, Python, Javascript, jQuery e KendoUI, além de HTML5, CSS e Photoshop, cujo objetivo é disponibilizar aplicações responsivas. Também modela dados não estruturados para análise estatística, projeções e tendências através do Microsoft Power BI.
-
-🏷️ #DotNet #DotNetFramework #DotNetCore #AspNet #MVC #CSharp #EntityFramework #WebAPI #SQL #SQLServer #Dapper #Python #Javascript #jQuery #KendoUI #CSS #BI #PowerBI
+## Proficiência
+>
+>Há 17 anos trabalha com a plataforma Microsoft .NET Framework, com vivência diária em .NET Core, ASP.NET MVC, C#, Entity Framework, WebAPI, SQL Server (consultas performáticas), Dapper, Python, Javascript, jQuery e KendoUI, além de HTML5, CSS e Photoshop, cujo objetivo é disponibilizar aplicações responsivas. Também modela dados não estruturados para análise estatística, projeções e tendências através do Microsoft Power BI.
+>
+>🏷️ #DotNet #DotNetFramework #DotNetCore #AspNet #MVC #CSharp #EntityFramework #WebAPI #SQL #SQLServer #Dapper #Python #Javascript #jQuery #KendoUI #CSS #BI #PowerBI
 
 
 
