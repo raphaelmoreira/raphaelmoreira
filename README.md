@@ -53,3 +53,8 @@ O que sou e o que faço pra pagar boletos?
 >- [NET Fiddle](https://dotnetfiddle.net/);
 >- [SharpLab](https://sharplab.io/);
 >- [Microsoft | Referencias ao código-fonte](https://referencesource.microsoft.com/)
+
+<hr>
+<a href="https://www.linkedin.com/in/raphaelmoreira">
+  <img alt="Linkedin" src="https://camo.githubusercontent.com/b0cf43e08b70097c6e8777eb14ff191f211bf14278aacc87c255f69d7761cab5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4c696e6b6564496e2d626c75653f7374796c653d666f722d7468652d6261646765266c6f676f3d4c696e6b6564696e266c6f676f436f6c6f723d7768697465">
+</a>
