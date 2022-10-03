@@ -20,7 +20,7 @@ O que sou e o que faço pra pagar boletos?
 
 ## Proficiência
 >
->Há 17 anos trabalha com a plataforma Microsoft .NET Framework, com vivência diária em .NET Core, ASP.NET MVC, C#, Entity Framework, WebAPI, SQL Server (consultas performáticas), Dapper, Python, Javascript, jQuery e KendoUI, além de HTML5, CSS e Photoshop, cujo objetivo é disponibilizar aplicações responsivas. Também modela dados não estruturados para análise estatística, projeções e tendências através do Microsoft Power BI.
+>Há 20 anos trabalha com a plataforma Microsoft .NET Framework, com vivência diária em .NET Core, ASP.NET MVC, C#, Entity Framework, WebAPI, SQL Server (consultas performáticas), Dapper, Python, Javascript, jQuery e KendoUI, além de HTML5, CSS e Photoshop, cujo objetivo é disponibilizar aplicações responsivas. Também modela dados não estruturados para análise estatística, projeções e tendências através do Microsoft Power BI.
 >
 >🏷️ #DotNet #DotNetFramework #DotNetCore #AspNet #MVC #CSharp #EntityFramework #WebAPI #SQL #SQLServer #Dapper #Python #Javascript #jQuery #KendoUI #CSS #BI #PowerBI
 
