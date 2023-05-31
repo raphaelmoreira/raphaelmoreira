@@ -1,3 +1,10 @@
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=raphaelmoreira&locale=pt-br&show_icons=true&theme=transparent)](https://github.com/anuraghazra/github-readme-stats)
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=raphaelmoreira&layout=donut&locale=pt-br)](https://github.com/anuraghazra/github-readme-stats)
+
+[![aa](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/raphaelmoreira/)
+[![aa](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)](https://dotnet.microsoft.com/pt-br/)
+
 # Visão Geral
 O que sou e o que faço pra pagar boletos?
 
