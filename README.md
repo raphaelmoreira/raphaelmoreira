@@ -1,5 +1,5 @@
 # Resumo
-[![Raphael Moreira](https://badgen.net/badge/raphael%20moreira/arquiteto%20de%20soluções%20|%20dotnet/red?icon=terminal)](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
+[![Raphael Moreira](https://badgen.net/badge/raphael%20moreira/arquiteto%20de%20soluções%20|%20dotnet/red?icon=terminal)]()
 
 [![Estatísticas por linguagem](https://github-readme-stats.vercel.app/api/top-langs/?username=raphaelmoreira&layout=donut&locale=pt-br)]()
 [![Estatísticas Github](https://github-readme-stats.vercel.app/api?username=raphaelmoreira&locale=pt-br&show_icons=true&theme=transparent)]()
