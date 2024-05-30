@@ -1,0 +1,32 @@
+{
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "../../doc/site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "../../doc/site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "Home",
+      "_appTitle": "Raphael Moreira",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}

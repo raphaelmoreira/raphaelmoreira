@@ -1,0 +1,27 @@
+{
+  "README.html": {
+    "href": "README.html",
+    "title": "Gestão do site | Raphael Moreira",
+    "keywords": "Gestão do site Site gerado através da ferramenta DocFx. Passos Criando e executando um novo projeto de documentação. dotnet tool install docfx --global dotnet tool update -g docfx mkdir tool cd tool mkdir docfx_project cd docfx_project docfx init docfx tool/docfx_project/docfx.json --serve Edite o toc.yml na raiz para produzir os menus principais (superiores)"
+  },
+  "aegis/intro.html": {
+    "href": "aegis/intro.html",
+    "title": "Introdução | Raphael Moreira",
+    "keywords": "Introdução Sobre o projeto Aegis..."
+  },
+  "cachimonia/intro.html": {
+    "href": "cachimonia/intro.html",
+    "title": "Introdução | Raphael Moreira",
+    "keywords": "Introdução Sobre o projeto Cachimônia..."
+  },
+  "index.html": {
+    "href": "index.html",
+    "title": "This is the HOMEPAGE. | Raphael Moreira",
+    "keywords": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+  },
+  "singularidade/intro.html": {
+    "href": "singularidade/intro.html",
+    "title": "Introdução | Raphael Moreira",
+    "keywords": "Introdução Sobre o projeto Singularidade..."
+  }
+}

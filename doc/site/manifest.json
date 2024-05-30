@@ -1,0 +1,121 @@
+{
+  "source_base_path": "C:/Users/raphael.moreira/source/repos/raphaelmoreira/tool/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "aegis/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "aegis/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "aegis/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "aegis/toc.html"
+        },
+        ".json": {
+          "relative_path": "aegis/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "cachimonia/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "cachimonia/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "cachimonia/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "cachimonia/toc.html"
+        },
+        ".json": {
+          "relative_path": "cachimonia/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "singularidade/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "singularidade/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "singularidade/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "singularidade/toc.html"
+        },
+        ".json": {
+          "relative_path": "singularidade/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
