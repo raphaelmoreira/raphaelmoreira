@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Gest&#227;o do site | Raphael Moreira </title>
+      <title>Gest&#227;o do website | por Raphael Moreira </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Gest&#227;o do site | Raphael Moreira ">
+      <meta name="title" content="Gest&#227;o do website | por Raphael Moreira ">
       
       
       <link rel="icon" href="favicon.ico">
@@ -44,8 +44,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="index.html">
-            <img id="logo" class="svg" src="logo.svg" alt="Home">
-            Home
+            <img id="logo" class="svg" src="logo.svg" alt="C&#243;dice">
+            C&#243;dice
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -71,9 +71,9 @@
         </div>
 
         <article data-uid="">
-<h1 id="gestão-do-site">Gestão do site</h1>
+<h1 id="gestão-do-website">Gestão do website</h1>
 
-<p>Site gerado através da ferramenta DocFx.</p>
+<p>Conteúdo gerado através da ferramenta DocFx.</p>
 <h1 id="passos">Passos</h1>
 <p>Criando e executando um novo projeto de documentação.</p>
 <pre><code>dotnet tool install docfx --global
@@ -87,6 +87,13 @@ docfx tool/docfx_project/docfx.json --serve
 </code></pre>
 <ul>
 <li>Edite o <code>toc.yml</code> na raiz para produzir os menus principais (superiores)</li>
+<li>Efetue o <code>commit</code> para o respositório</li>
+<li>No repositório, clique no menu <strong>Settings</strong></li>
+<li>Na seção <strong>Code and automation</strong>, clique em <strong>Pages</strong></li>
+<li>Em <strong>Build and deployment</strong>, selecione a fonte <strong>GitHub Actions</strong></li>
+<li>Na opção que abriu, opte por <strong>Static HTML</strong> e clique em <strong>Configure</strong></li>
+<li>Atualize <code>name</code> e <code>jobs:deploy:steps:name(Upload artifact):with:path:(./doc/site)</code> ou o caminho conforme sua estrutura.</li>
+<li>Efetue o <code>commit</code> e verifique se está de acordo.</li>
 </ul>
 
 </article>

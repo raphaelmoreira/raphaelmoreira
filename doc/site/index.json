@@ -1,27 +1,32 @@
 {
   "README.html": {
     "href": "README.html",
-    "title": "Gestão do site | Raphael Moreira",
-    "keywords": "Gestão do site Site gerado através da ferramenta DocFx. Passos Criando e executando um novo projeto de documentação. dotnet tool install docfx --global dotnet tool update -g docfx mkdir tool cd tool mkdir docfx_project cd docfx_project docfx init docfx tool/docfx_project/docfx.json --serve Edite o toc.yml na raiz para produzir os menus principais (superiores)"
+    "title": "Gestão do website | por Raphael Moreira",
+    "keywords": "Gestão do website Conteúdo gerado através da ferramenta DocFx. Passos Criando e executando um novo projeto de documentação. dotnet tool install docfx --global dotnet tool update -g docfx mkdir tool cd tool mkdir docfx_project cd docfx_project docfx init docfx tool/docfx_project/docfx.json --serve Edite o toc.yml na raiz para produzir os menus principais (superiores) Efetue o commit para o respositório No repositório, clique no menu Settings Na seção Code and automation, clique em Pages Em Build and deployment, selecione a fonte GitHub Actions Na opção que abriu, opte por Static HTML e clique em Configure Atualize name e jobs:deploy:steps:name(Upload artifact):with:path:(./doc/site) ou o caminho conforme sua estrutura. Efetue o commit e verifique se está de acordo."
   },
   "aegis/intro.html": {
     "href": "aegis/intro.html",
-    "title": "Introdução | Raphael Moreira",
+    "title": "Introdução | por Raphael Moreira",
     "keywords": "Introdução Sobre o projeto Aegis..."
+  },
+  "apetrechos/intro.html": {
+    "href": "apetrechos/intro.html",
+    "title": "Introdução | por Raphael Moreira",
+    "keywords": "Introdução Sobre o projeto Apetrechos..."
   },
   "cachimonia/intro.html": {
     "href": "cachimonia/intro.html",
-    "title": "Introdução | Raphael Moreira",
+    "title": "Introdução | por Raphael Moreira",
     "keywords": "Introdução Sobre o projeto Cachimônia..."
   },
   "index.html": {
     "href": "index.html",
-    "title": "This is the HOMEPAGE. | Raphael Moreira",
-    "keywords": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+    "title": "Códice | por Raphael Moreira",
+    "keywords": "Códice Como Arquiteto de Soluções e Segurança, busco neste local compartilhar assuntos de meu interesse pessoal - geralmente pouco ortodoxos -, embora veja potencial de guiar futuros aspirantes ou curiosos da área. Disponibilizado nos tópicos abaixo, e publicado em capítulos sem periodicidade regular - filho pequeno..., sabem como é - , o Códice é um antro de informação que responde perguntas a qual ninguém fez. Ægis Singularᴉdade Cachimônica Apetrechos Artigos e relatórios relacionados a testes de penetração, exploração de vulnerabilidades e assuntos com escopo em cibersegurança. Artigos orientados a devaneios sobre assuntos diversos, cunhados à partir da observação do cotidiano analógico ou digital. Artigos sobre a tempestade cerebral durante a concepção de uma linguagem de programação, cuja sintaxe rupestre e interiorana não possui fins acadêmicos. Artigos sobre as ferramentas que encontro no caminho e que considero relevante para o trabalho."
   },
   "singularidade/intro.html": {
     "href": "singularidade/intro.html",
-    "title": "Introdução | Raphael Moreira",
+    "title": "Introdução | por Raphael Moreira",
     "keywords": "Introdução Sobre o projeto Singularidade..."
   }
 }
