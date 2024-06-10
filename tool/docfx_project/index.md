@@ -16,7 +16,7 @@ Testes de penetração, exploração de vulnerabilidades e outros assuntos relac
 <hr>
 
 ## Singularᴉdade
-Orientado a devaneios cunhados a partir da observação do cotidiano analógico ou digital.
+Desbravando as terras desoladas da existência, sobre o que é interessante, curioso e desnecessário.
 
 [![Singularidade](images/singularidade/logo.png)](singularidade/intro.md)
 <hr>

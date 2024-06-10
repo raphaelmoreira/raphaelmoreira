@@ -121,6 +121,46 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/singularidade/ia-indiscutivel-arte-banner.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/singularidade/ia-indiscutivel-arte-banner.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/singularidade/ia-indiscutivel-arte-dog-with-wings-da-vinci-midjourney.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/singularidade/ia-indiscutivel-arte-dog-with-wings-da-vinci-midjourney.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/singularidade/ia-indiscutivel-arte-dog-with-wings-hotpotai.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/singularidade/ia-indiscutivel-arte-dog-with-wings-hotpotai.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/singularidade/ia-indiscutivel-arte-dog-with-wings-midjourney.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/singularidade/ia-indiscutivel-arte-dog-with-wings-midjourney.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/singularidade/logo.png",
       "output": {
         "resource": {
@@ -135,6 +175,16 @@
       "output": {
         ".html": {
           "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "singularidade/ia-indiscutivel-arte.md",
+      "output": {
+        ".html": {
+          "relative_path": "singularidade/ia-indiscutivel-arte.html"
         }
       },
       "version": ""
