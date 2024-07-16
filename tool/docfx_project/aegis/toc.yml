@@ -1,2 +1,5 @@
 - name: Introdução
   href: intro.md
+
+- name: Enumeração no Autenticador Microsoft Online
+  href: divulgacao/microsoft/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.md

@@ -22,6 +22,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "aegis/divulgacao/microsoft/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.md",
+      "output": {
+        ".html": {
+          "relative_path": "aegis/divulgacao/microsoft/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "aegis/intro.md",
       "output": {
         ".html": {
@@ -91,10 +101,90 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/001-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/001-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/002-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/002-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/003-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/003-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/004-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/004-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/005-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/005-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/006-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/006-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/007-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/007-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/aegis/logo.png",
       "output": {
         "resource": {
           "relative_path": "images/aegis/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aegis/logo50x50.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/logo50x50.png"
         }
       },
       "version": ""
@@ -115,6 +205,16 @@
       "output": {
         "resource": {
           "relative_path": "images/cachimonia/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/cachimonia/logo50x50.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/cachimonia/logo50x50.png"
         }
       },
       "version": ""
@@ -175,6 +275,16 @@
       "output": {
         "resource": {
           "relative_path": "images/singularidade/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/singularidade/logo50x50.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/singularidade/logo50x50.png"
         }
       },
       "version": ""
