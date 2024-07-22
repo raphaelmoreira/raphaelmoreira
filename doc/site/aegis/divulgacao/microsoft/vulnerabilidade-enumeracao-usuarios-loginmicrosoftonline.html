@@ -87,30 +87,24 @@
         <article data-uid="">
 <h1 id="divulgação-de-vulnerabilidade-enumeração-de-usuários-no-serviço-de-autenticação-do-microsoft-online">Divulgação de Vulnerabilidade: Enumeração de Usuários no Serviço de Autenticação do Microsoft Online</h1>
 
-<p>A enumeração de usuários é uma vulnerabilidade de segurança que permite a um atacante descobrir se determinados nomes de usuário
-estão presentes em um sistema. Esta vulnerabilidade ocorre quando um aplicativo revela, através de mensagens de erro, respostas
-diferentes para usuários existentes e não existentes durante processos de autenticação, registro, ou recuperação de senha.</p>
-<p>A enumeração de usuários pode ser explorada para lançar ataques direcionados, aumentando significativamente os riscos de segurança.</p>
+<p>Este documento detalha a descoberta de uma vulnerabilidade no serviço de autenticação do <a href="https://login.microsoftonline.com/">Microsoft Online</a>,
+o qual permite a enumeração de usuários.</p>
 <h2 id="sumário">Sumário</h2>
-<p>Este documento detalha a descoberta de uma vulnerabilidade considerada <strong>crítica</strong> no serviço de autenticação do <a href="https://login.microsoftonline.com/">Microsoft Online</a>,
-o qual permite a enumeração de usuários. A vulnerabilidade foi identificada através de uma análise de segurança seguindo
-os padrões <a href="https://owasp.org/">OWASP</a>, <a href="https://www.nist.gov/cyberframework">NIST</a>, <a href="https://www.iso.org/standard/44378.html">ISO 27034</a> e
-<a href="https://wiki.sei.cmu.edu/confluence/display/seccode">SEI CERT Coding Standard</a>.</p>
+<p>A vulnerabilidade permite que um atacante remoto descubra nomes válidos de usuários em aplicações que utilizam o serviço
+de autenticação do <strong>Microsoft Online</strong>, podendo ser explorado para realização de ataques direcionados.</p>
 <h3 id="linha-do-tempo">Linha do Tempo</h3>
-<p>A descoberta foi comunicada ao <a href="https://msrc.microsoft.com/">Microsoft Security Response Center (MSRC)</a>, sob o
-<em>submission number</em> <a href="https://msrc.microsoft.com/report/vulnerability/VULN-125009/"><code>VULN-125009</code></a>, <em>case number</em> <code>87704</code> e
-<em>external tracking ID</em> <code>microsoft_bounty_1</code>.</p>
+<p>A descoberta foi comunicada ao <a href="https://msrc.microsoft.com/">Microsoft Security Response Center (MSRC)</a>, sob o <em>external tracking ID</em> <code>microsoft_bounty_1</code>.</p>
 <ul>
 <li><strong>Data da descoberta</strong>: 26 de Abril de 2024</li>
 <li><strong>Data da notificação ao MSRC</strong>: 27 de Abril de 2024</li>
-<li><strong>Data da análise pelo MSRC</strong>: 20 de Julho de 2024</li>
+<li><strong>Data da análise pelo MSRC</strong>: 29 de Junho de 2024</li>
 <li><strong>Data da conclusão pelo MSRC¹</strong>: 12 de Junho de 2024</li>
 </ul>
 <blockquote>
-<p><strong>¹</strong> a vulnerabilidade foi devidamente relatada seguindo-se as diretrizes de divulgação responsável para garantir a
-mitigação adequada e a proteção de possíveis usuários afetados. Dado que o evento foi considerado uma <strong>&quot;não falha&quot;</strong>,
-torno público o cenário com o intuito de alinhar entendimento sobre a vulnerabilidade e levantar a questão sobre em
-quais contextos ela é considerada crítica.</p>
+<p><strong>¹</strong> a vulnerabilidade foi devidamente relatada seguindo as diretrizes de divulgação responsável para garantir a
+mitigação adequada e a proteção de possíveis usuários afetados. Dado que o evento não foi considerado uma vulnerabilidade,
+torno público o cenário com o intuito de alinhar entendimento sobre em quais contextos a vulnerabilidade aqui cistada,
+deve ser considerada um risco.</p>
 </blockquote>
 <h2 id="detalhamento">Detalhamento</h2>
 <ul>
@@ -120,15 +114,18 @@ quais contextos ela é considerada crítica.</p>
 </ul>
 <p><em>¹ dado que o item não foi considerado uma ameaça, nenhum código CVE foi atribuído até o momento.</em></p>
 <h3 id="descrição">Descrição</h3>
-<p>A vulnerabilidade permite que um atacante remoto descubra nomes válidos de usuários em aplicações que utilizam o serviço
-de <strong>Autenticação do Microsoft Online</strong>. Este tipo de vulnerabilidade pode ser explorado para realizar ataques direcionados,
-como <a href="https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44"><em>phishing</em></a>,
-<a href="https://www.kaspersky.com.br/resource-center/definitions/spear-phishing"><em>spear phishing</em></a> e <a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attack"><em>brute force</em></a>.</p>
+<p>A enumeração de usuários é uma vulnerabilidade de segurança que permite a um atacante descobrir se determinados nomes de usuário
+estão presentes em um sistema. Esta vulnerabilidade ocorre quando um aplicativo revela, através de mensagens de erro, respostas
+diferentes para usuários existentes e não existentes durante processos de autenticação, registro, ou recuperação de senha.</p>
 <h3 id="impacto">Impacto</h3>
 <p>A exploração desta vulnerabilidade pode levar a:</p>
+<h4 id="phishing">Phishing</h4>
+<p>Ataque que tenta roubar seu dinheiro ou a sua identidade fazendo com que você revele informações pessoais, tais como números
+de cartão de crédito, informações bancárias ou senhas em sites que fingem ser legítimos. Criminosos cibernéticos normalmente
+fingem ser empresas confiáveis, amigos ou pessoas conhecidas em uma mensagem de email falsa, que contém um link para
+um site de phishing.</p>
+<p><em>Fonte: <a href="https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44">Suporte Microsoft</a></em></p>
 <ul>
-<li><a href="https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44">Phishing</a>:
-informações sobre usuários válidos podem ser usadas para criar ataques de phishing mais eficazes.</li>
 <li><a href="https://www.kaspersky.com.br/resource-center/definitions/spear-phishing">Spear Phishing</a>:</li>
 <li><a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attack">Brute Force e Password Spraying</a>: conhecimento de nomes de usuários
 válidos facilita ataques de força bruta e tentativas de múltiplas senhas.</li>
@@ -325,20 +322,18 @@ vulnerabilidade de risco:</p>
 </ul>
 <h2 id="referências">Referências</h2>
 <ul>
-<li><p>ISO 27034-1: Information technology — Security techniques — Application security — Part 1: Overview and concepts</p>
-</li>
-<li><p>SEI CERT Coding Standard for C</p>
-</li>
-<li><p>OWASP Authentication Cheat Sheet</p>
-</li>
-<li><p>NIST SP 800-63B: Digital Identity Guidelines</p>
-</li>
-<li><h2 id="conclusão">Conclusão</h2>
-</li>
+<li>ISO 27034-1: Information technology — Security techniques — Application security — Part 1: Overview and concepts</li>
+<li>SEI CERT Coding Standard for C</li>
+<li>OWASP Authentication Cheat Sheet</li>
+<li>NIST SP 800-63B: Digital Identity Guidelines</li>
 </ul>
+<h2 id="conclusão">Conclusão</h2>
 <p>A descoberta desta vulnerabilidade no serviço de autenticação do Microsoft Online ressalta a importância contínua de revisões
 de segurança e conformidade com padrões internacionais. A mitigação rápida e eficaz é crucial para proteger os usuários e
 prevenir exploração maliciosa.</p>
+<p>A vulnerabilidade foi identificada através de uma análise de segurança seguindo
+os padrões <a href="https://owasp.org/">OWASP</a>, <a href="https://www.nist.gov/cyberframework">NIST</a>, <a href="https://www.iso.org/standard/44378.html">ISO 27034</a> e
+<a href="https://wiki.sei.cmu.edu/confluence/display/seccode">SEI CERT Coding Standard</a>.</p>
 
 </article>
 
