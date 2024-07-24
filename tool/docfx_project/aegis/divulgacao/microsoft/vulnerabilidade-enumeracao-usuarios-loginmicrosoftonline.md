@@ -15,7 +15,7 @@ A descoberta foi comunicada ao [Microsoft Security Response Center (MSRC)](https
 
 >**¹** a vulnerabilidade foi devidamente relatada seguindo as diretrizes de divulgação responsável para garantir a 
 > mitigação adequada e a proteção de possíveis usuários afetados. Dado que o evento não foi considerado uma vulnerabilidade,
-> torno público o cenário com o intuito de alinhar entendimento sobre em quais contextos a vulnerabilidade aqui citada,
+> torno público o cenário com o intuito de alinhar entendimento sobre quais contextos a vulnerabilidade aqui citada,
 > deve ser considerada um risco.
 
 ## Detalhamento
@@ -28,28 +28,50 @@ _¹ dado que o item não foi considerado uma ameaça, nenhum código CVE foi atr
 ### Descrição
 A enumeração de usuários é uma vulnerabilidade de segurança que permite a um atacante descobrir se determinados nomes de usuário
 estão presentes em um sistema. Esta vulnerabilidade ocorre quando um aplicativo revela, através de mensagens de erro, respostas
-diferentes para usuários existentes e não existentes durante processos de autenticação, registro, ou recuperação de senha.
+diferentes para usuários existentes e não existentes, durante o processo de autenticação, registro ou recuperação de senha.
 
 ### Impacto
-Esta informação, aparentemente inofensiva, pode ter impactos significativos na segurança da organização, pois ao expor informações
-de acesso, aumenta a eficácia de ataques subsequentes, como _phishing_, força bruta e engenharia social.
+Esta informação, aparentemente inofensiva, pode afetar de forma significativa a segurança da organização, já que a exposição 
+de credenciais de acesso contribuem para o aumento e eficácia de ataques subsequentes, como _**phishing**_, **força bruta** e 
+**engenharia social**.
 
-#### Phishing
+#### 🔴 Phishing
 Ataque que tenta roubar seu dinheiro ou a sua identidade fazendo com que você revele informações pessoais, tais como números 
 de cartão de crédito, informações bancárias ou senhas em sites que fingem ser legítimos. Criminosos cibernéticos normalmente 
 fingem ser empresas confiáveis, amigos ou pessoas conhecidas em uma mensagem de email falsa, que contém um link para 
-um site de phishing. (Fonte: [Suporte Microsoft](https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44)).
+um site de _"phishing"_ (falso). (Fonte: [Suporte Microsoft](https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44)).
 
-Um subconjunto dessa prática é o [_spear phishing_](https://www.kaspersky.com.br/resource-center/definitions/spear-phishing), 
-que trata da especialização do ataque, onde os invasores realizam pesquisas extensas sobre os alvos pretendidos. Essa alta personalização
-visa não só indivíduos, como empresas específicas, ocasionando fraude financeira, manipulação de preços de ações, espionagem ou 
-roubo de dados confidenciais para revendê-los. Podem ser projetados também para infectar dispositivos com malware.
+Um subconjunto dessa prática é o _spear phishing_, que trata da especialização do ataque, onde os invasores realizam pesquisas 
+extensas sobre os alvos pretendidos. Essa alta personalização visa não só indivíduos, como empresas específicas, ocasionando 
+fraudes financeiras, manipulação de preços de ações, espionagem ou roubo de dados confidenciais para revenda. Podem ser 
+projetados também para infectar dispositivos com _malware_. (Fonte: [Kaspersky Resource Center](https://www.kaspersky.com.br/resource-center/definitions/spear-phishing))
 
+#### 🔴 Força bruta
+Um ataque de força bruta usa o método de tentativa e erro para adivinhar informações de login, chaves de criptografia ou 
+encontrar uma página da Web oculta. Invasores trabalham com todas as combinações possíveis na esperança de acertar. (Fonte: [Kaspersky Resource Center](https://www.kaspersky.com.br/resource-center/definitions/brute-force-attac))
 
+Um subtipo dessa forma de ataque é conhecido como _Password Spraying_ (pulverização de senhas), que consiste na tentativa
+exaustiva de usar a mesma senha em diversas contas antes de tentar outra. Ataques de pulverização de senhas costumam ser 
+efetivos, porque muitos usuários, além de usarem as mesmas senhas em diferentes serviços, em geral são de simples memorização
+e fáceis de adivinhar. [Fonte: [Kaspersky Resource Center](https://www.kaspersky.com.br/resource-center/definitions/what-is-password-spraying)]
 
-- [Spear Phishing](https://www.kaspersky.com.br/resource-center/definitions/spear-phishing): 
-- [Brute Force e Password Spraying](https://www.kaspersky.com.br/resource-center/definitions/brute-force-attack): conhecimento de nomes de usuários 
-válidos facilita ataques de força bruta e tentativas de múltiplas senhas.
+Vale destaque aqui para as senhas mais curiosas, utilizadas no Brasil, no ano de 2023:
+
+| Posição | Senha     | Ocorrências |
+|---------|-----------|-------------|
+| 1º      | admin     | 204.846     |
+| 2º      | 123456    | 137.551     |
+| 3º      | 12345678  | 46.666      |
+| 4º      | 102030    | 28.034      |
+| 5º      | 123456789 | 24.834      |
+| 7º      | gvt12345  | 10.684      |
+| 9º      | password  | 8687        |
+| 11º     | 123mudar  | 8202        |
+| 15º     | fera@123  | 6364        |
+| 20º     | Senha     | 4762        |
+
+Fonte: [Nordpass](https://nordpass.com/es/most-common-passwords-list/)
+
 - Engenharia Social: informação sobre usuários válidos pode ser utilizada para enganar funcionários ou usuários e obter mais dados sensíveis.
 - Comprometimento de informações sensíveis dos usuários.
 - Potencial acesso não autorizado aos recursos da empresa.
@@ -133,7 +155,7 @@ A partir de uma conferência simples das mensagens de erro, sou capaz de enumera
 Inspecionando o código-fonte do serviço https://login.microsoftonline.com, e analisando os pacotes enviados pela rede, 
 encontramos o _endpoint_ `GetCredentialType`. Ao extrair o corpo da requisição, temos isso:
 
-```txt
+```
 curl --location 'https://login.microsoftonline.com/common/GetCredentialType?mkt=pt-BR' \
 --header 'accept: application/json' \
 --header 'accept-language: pt-BR,pt;q=0.7' \
@@ -202,13 +224,15 @@ _Obs: há outras mudanças no `json` que colaboram com a identificação, mas op
 
 ### Metodologia Expandida
 Considerando que o serviço [Azure DevOps](https://azure.microsoft.com/pt-br/products/devops) também usa o Microsoft Online, e sua **url** é acessível através de `https://dev.azure.com/{nomeDaOrganizacao}`, 
-podemos fazer um _web scrapping_ numa rede social, como o LinkedIn, e obter o nome principal de cada empresa. Com isso, 
-testamos até obter um **HttpStatus** `200`:
+podemos fazer um _web scrapping_ numa rede social, como o LinkedIn, e obter o nome principal de cada empresa. 
+
+Com isso, testamos até obter um **HttpStatus** `200`:
 
 ```
 https://dev.azure.com/mcdonalds
 https://dev.azure.com/samsung
 https://dev.azure.com/ibm
+https://dev.azure.com/suaempresa
 ...
 https://dev.azure.com/microsoft
 ```

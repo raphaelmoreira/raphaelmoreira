@@ -92,7 +92,6 @@ o qual permite a enumeração de usuários.</p>
 <h2 id="sumário">Sumário</h2>
 <p>A vulnerabilidade permite que um atacante remoto descubra nomes válidos de usuários em aplicações que utilizam o serviço
 de autenticação do <strong>Microsoft Online</strong>, podendo ser explorado para realização de ataques direcionados.</p>
-<h3 id="linha-do-tempo">Linha do Tempo</h3>
 <p>A descoberta foi comunicada ao <a href="https://msrc.microsoft.com/">Microsoft Security Response Center (MSRC)</a>, sob o <em>external tracking ID</em> <code>microsoft_bounty_1</code>.</p>
 <ul>
 <li><strong>Data da descoberta</strong>: 26 de Abril de 2024</li>
@@ -103,7 +102,7 @@ de autenticação do <strong>Microsoft Online</strong>, podendo ser explorado pa
 <blockquote>
 <p><strong>¹</strong> a vulnerabilidade foi devidamente relatada seguindo as diretrizes de divulgação responsável para garantir a
 mitigação adequada e a proteção de possíveis usuários afetados. Dado que o evento não foi considerado uma vulnerabilidade,
-torno público o cenário com o intuito de alinhar entendimento sobre em quais contextos a vulnerabilidade aqui cistada,
+torno público o cenário com o intuito de alinhar entendimento sobre quais contextos a vulnerabilidade aqui citada,
 deve ser considerada um risco.</p>
 </blockquote>
 <h2 id="detalhamento">Detalhamento</h2>
@@ -116,19 +115,91 @@ deve ser considerada um risco.</p>
 <h3 id="descrição">Descrição</h3>
 <p>A enumeração de usuários é uma vulnerabilidade de segurança que permite a um atacante descobrir se determinados nomes de usuário
 estão presentes em um sistema. Esta vulnerabilidade ocorre quando um aplicativo revela, através de mensagens de erro, respostas
-diferentes para usuários existentes e não existentes durante processos de autenticação, registro, ou recuperação de senha.</p>
+diferentes para usuários existentes e não existentes, durante o processo de autenticação, registro ou recuperação de senha.</p>
 <h3 id="impacto">Impacto</h3>
-<p>A exploração desta vulnerabilidade pode levar a:</p>
-<h4 id="phishing">Phishing</h4>
+<p>Esta informação, aparentemente inofensiva, pode afetar de forma significativa a segurança da organização, já que a exposição
+de credenciais de acesso contribuem para o aumento e eficácia de ataques subsequentes, como <em><strong>phishing</strong></em>, <strong>força bruta</strong> e
+<strong>engenharia social</strong>.</p>
+<h4 id="-phishing">🔴 Phishing</h4>
 <p>Ataque que tenta roubar seu dinheiro ou a sua identidade fazendo com que você revele informações pessoais, tais como números
 de cartão de crédito, informações bancárias ou senhas em sites que fingem ser legítimos. Criminosos cibernéticos normalmente
 fingem ser empresas confiáveis, amigos ou pessoas conhecidas em uma mensagem de email falsa, que contém um link para
-um site de phishing.</p>
-<p><em>Fonte: <a href="https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44">Suporte Microsoft</a></em></p>
+um site de <em>&quot;phishing&quot;</em> (falso). (Fonte: <a href="https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44">Suporte Microsoft</a>).</p>
+<p>Um subconjunto dessa prática é o <em>spear phishing</em>, que trata da especialização do ataque, onde os invasores realizam pesquisas
+extensas sobre os alvos pretendidos. Essa alta personalização visa não só indivíduos, como empresas específicas, ocasionando
+fraudes financeiras, manipulação de preços de ações, espionagem ou roubo de dados confidenciais para revenda. Podem ser
+projetados também para infectar dispositivos com <em>malware</em>. (Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/spear-phishing">Kaspersky Resource Center</a>)</p>
+<h4 id="-força-bruta">🔴 Força bruta</h4>
+<p>Um ataque de força bruta usa o método de tentativa e erro para adivinhar informações de login, chaves de criptografia ou
+encontrar uma página da Web oculta. Invasores trabalham com todas as combinações possíveis na esperança de acertar. (Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attac">Kaspersky Resource Center</a>)</p>
+<p>Um subtipo dessa forma de ataque é conhecido como <em>Password Spraying</em> (pulverização de senhas), que consiste na tentativa
+exaustiva de usar a mesma senha em diversas contas antes de tentar outra. Ataques de pulverização de senhas costumam ser
+efetivos, porque muitos usuários, além de usarem as mesmas senhas em diferentes serviços, em geral são de simples memorização
+e fáceis de adivinhar. [Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/what-is-password-spraying">Kaspersky Resource Center</a>]</p>
+<p>Vale destaque aqui para as senhas mais curiosas, utilizadas no Brasil, no ano de 2023:</p>
+<table>
+<thead>
+<tr>
+<th>Posição</th>
+<th>Senha</th>
+<th>Ocorrências</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1º</td>
+<td>admin</td>
+<td>204.846</td>
+</tr>
+<tr>
+<td>2º</td>
+<td>123456</td>
+<td>137.551</td>
+</tr>
+<tr>
+<td>3º</td>
+<td>12345678</td>
+<td>46.666</td>
+</tr>
+<tr>
+<td>4º</td>
+<td>102030</td>
+<td>28.034</td>
+</tr>
+<tr>
+<td>5º</td>
+<td>123456789</td>
+<td>24.834</td>
+</tr>
+<tr>
+<td>7º</td>
+<td>gvt12345</td>
+<td>10.684</td>
+</tr>
+<tr>
+<td>9º</td>
+<td>password</td>
+<td>8687</td>
+</tr>
+<tr>
+<td>11º</td>
+<td>123mudar</td>
+<td>8202</td>
+</tr>
+<tr>
+<td>15º</td>
+<td>fera@123</td>
+<td>6364</td>
+</tr>
+<tr>
+<td>20º</td>
+<td>Senha</td>
+<td>4762</td>
+</tr>
+</tbody>
+</table>
+<p>Fonte: <a href="https://nordpass.com/es/most-common-passwords-list/">Nordpass</a></p>
 <ul>
-<li><a href="https://www.kaspersky.com.br/resource-center/definitions/spear-phishing">Spear Phishing</a>:</li>
-<li><a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attack">Brute Force e Password Spraying</a>: conhecimento de nomes de usuários
-válidos facilita ataques de força bruta e tentativas de múltiplas senhas.</li>
 <li>Engenharia Social: informação sobre usuários válidos pode ser utilizada para enganar funcionários ou usuários e obter mais dados sensíveis.</li>
 <li>Comprometimento de informações sensíveis dos usuários.</li>
 <li>Potencial acesso não autorizado aos recursos da empresa.</li>
