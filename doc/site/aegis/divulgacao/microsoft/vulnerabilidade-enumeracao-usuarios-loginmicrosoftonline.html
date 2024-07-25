@@ -118,17 +118,24 @@ estão presentes em um sistema. Esta vulnerabilidade ocorre quando um aplicativo
 diferentes para usuários existentes e não existentes, durante o processo de autenticação, registro ou recuperação de senha.</p>
 <h3 id="impacto">Impacto</h3>
 <p>Esta informação, aparentemente inofensiva, pode afetar de forma significativa a segurança da organização, já que a exposição
-de credenciais de acesso contribuem para o aumento e eficácia de ataques subsequentes, como <em><strong>phishing</strong></em>, <strong>força bruta</strong> e
-<strong>engenharia social</strong>.</p>
+de credenciais de acesso contribuem para o aumento e eficácia de ataques subsequentes, como <em><strong>phishing</strong></em>, <strong>engenharia social</strong> e
+<strong>força bruta</strong>.</p>
 <h4 id="-phishing">🔴 Phishing</h4>
 <p>Ataque que tenta roubar seu dinheiro ou a sua identidade fazendo com que você revele informações pessoais, tais como números
 de cartão de crédito, informações bancárias ou senhas em sites que fingem ser legítimos. Criminosos cibernéticos normalmente
 fingem ser empresas confiáveis, amigos ou pessoas conhecidas em uma mensagem de email falsa, que contém um link para
-um site de <em>&quot;phishing&quot;</em> (falso). (Fonte: <a href="https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44">Suporte Microsoft</a>).</p>
-<p>Um subconjunto dessa prática é o <em>spear phishing</em>, que trata da especialização do ataque, onde os invasores realizam pesquisas
+um site de <em>&quot;phishing&quot;</em> (pescar). (Fonte: <a href="https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44">Suporte Microsoft</a>).</p>
+<p>Um subconjunto dessa prática é o <em>spear phishing</em> (pescar na lança), que trata da especialização do ataque, onde os invasores realizam pesquisas
 extensas sobre os alvos pretendidos. Essa alta personalização visa não só indivíduos, como empresas específicas, ocasionando
 fraudes financeiras, manipulação de preços de ações, espionagem ou roubo de dados confidenciais para revenda. Podem ser
 projetados também para infectar dispositivos com <em>malware</em>. (Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/spear-phishing">Kaspersky Resource Center</a>)</p>
+<h4 id="-engenharia-social">🔴 Engenharia Social</h4>
+<p>Os ataques de engenharia social manipulam as emoções e os instintos das pessoas de maneiras que comprovadamente a levam a compartilhar
+informações que não deveriam compartilhar, baixar software que não deveriam baixar, visitar sites que não deveriam visitar,
+enviar dinheiro para criminosos ou cometer outros erros que comprometam sua segurança pessoal ou organizacional. (Fonte: <a href="https://www.ibm.com/br-pt/topics/social-engineering">IBM Think</a>).</p>
+<p>Além dos já citados <em>phishing</em> e <em>spear phishing</em>, temos o <em>baiting</em> (iscar pela curiosidade), <em>tailgating</em> (carona no dispositivo desbloqueado),
+<em>pretexting</em> (o falso samaritano digital), <em>Quid pro quo</em> (serviços desejáveis, porém falsos, em troca da informação), <em>scareware</em> (manipular pelo medo)
+e <em>watering hole</em> (um serviço real é infectado).</p>
 <h4 id="-força-bruta">🔴 Força bruta</h4>
 <p>Um ataque de força bruta usa o método de tentativa e erro para adivinhar informações de login, chaves de criptografia ou
 encontrar uma página da Web oculta. Invasores trabalham com todas as combinações possíveis na esperança de acertar. (Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attac">Kaspersky Resource Center</a>)</p>
@@ -199,46 +206,34 @@ e fáceis de adivinhar. [Fonte: <a href="https://www.kaspersky.com.br/resource-c
 </tbody>
 </table>
 <p>Fonte: <a href="https://nordpass.com/es/most-common-passwords-list/">Nordpass</a></p>
+<h3 id="relevância">Relevância</h3>
+<p>Políticas robustas de controle de acesso, como multifator ou <em>zero trust</em>, limitam o acesso dos cibercriminosos, mas a falta de
+respostas uniformes durante este acesso, abre caminho para a vulnerabilidade de enumeração de usuários, cujo risco é reconhecido
+por várias organizações de segurança:</p>
+<h4 id="owasp-open-web-application-security-project">OWASP (Open Web Application Security Project)</h4>
+<p>Frequentemente mencionada no OWASP Top 10 e citado nas diretrizes do <a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#authentication-responses">Authentication Cheat Sheet</a>,
+podemos destacar aqui suas demais categorias:</p>
 <ul>
-<li>Engenharia Social: informação sobre usuários válidos pode ser utilizada para enganar funcionários ou usuários e obter mais dados sensíveis.</li>
-<li>Comprometimento de informações sensíveis dos usuários.</li>
-<li>Potencial acesso não autorizado aos recursos da empresa.</li>
+<li><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A1:2021 - Broken Access Control</a></li>
+<li><a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">A7:2021 - Identification and Authentication Failures</a></li>
+<li><a href="https://owasp.org/www-project-top-ten/2017/A9_2017-Using_Components_with_Known_Vulnerabilities">A9:2017 - Using Components with Known Vulnerabilities</a></li>
 </ul>
-<p>A enumeração de usuários é reconhecida por várias organizações de segurança como uma vulnerabilidade de risco significativo:</p>
-<p><strong>OWASP (Open Web Application Security Project)</strong></p>
+<h4 id="nist-national-institute-of-standards-and-technology">NIST (National Institute of Standards and Technology)</h4>
+<p>A prática é abordada pelo <a href="https://pages.nist.gov/800-63-3/sp800-63b.html">NIST SP 800-63B: Digital Identity Guidelines</a>,
+tópico 8: Threats and Security Considerations.</p>
+<h4 id="iso-international-organization-for-standardization">ISO (International Organization for Standardization)</h4>
+<p>Embora não mencione especificamente a enumeração de usuários, as diretrizes de segurança da <a href="https://www.iso.org/standard/27001">ISO/IEC 27001</a>
+e <a href="https://www.iso.org/standard/44378.html">ISO/IEC 27034</a> ressaltam, respectivamente, a importância de proteger informações
+de autenticação e adoção de práticas seguras de desenvolvimento.</p>
+<h4 id="sei-cert-software-engineering-institute-cert">SEI CERT (Software Engineering Institute CERT)</h4>
+<p>O SEI CERT Coding Standards fornece <a href="https://wiki.sei.cmu.edu/confluence/display/seccode/Top+10+Secure+Coding+Practices">10 práticas de codificação segura</a>
+para evitar diversas vulnerabilidades. Dentre elas, vale destaque para o item 8: <strong>Practice defense in depth</strong>, cuja orientação
+é assegurar mais de uma camada de proteção, combinando técnicas para reduzir as lacunas de segurança.</p>
+<h4 id="cve-common-vulnerabilities-and-exposures">CVE (Common Vulnerabilities and Exposures)</h4>
+<p>Múltiplas entradas de enumeração de usuários são regularmente catalogadas no banco de dados CVE, como <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5487">WordPress</a>,
+<a href="https://nvd.nist.gov/vuln/detail/cve-2016-6210">OpenSSH</a>, <a href="https://nvd.nist.gov/vuln/detail/cve-2021-4191">GitLab</a>.</p>
 <ul>
-<li><p>Frequentemente mencionada no OWASP Top 10;</p>
-</li>
-<li><p>Presente nas categorias:</p>
-<ul>
-<li>A7:2017 – Cross-Site Scripting (XSS);</li>
-<li>A9:2017 – Using Components with Known Vulnerabilities;</li>
-</ul>
-</li>
-<li><p>Citado nas diretrizes do OWASP Authentication Cheat Sheet.</p>
-</li>
-<li><p><strong>NIST (National Institute of Standards and Technology)</strong></p>
-<ul>
-<li>A prática é abordada pelo NIST SP 800-63B: Digital Identity Guidelines;</li>
-</ul>
-</li>
-<li><p><strong>ISO (International Organization for Standardization)</strong></p>
-<ul>
-<li>ISO/IEC 27001: embora não mencione especificamente a enumeração de usuários, as diretrizes de segurança ressaltam a importância de proteger informações de autenticação.</li>
-<li>ISO/IEC 27034: focado em segurança de aplicações, inclui práticas para mitigar riscos como a enumeração de usuários.</li>
-</ul>
-</li>
-<li><p><strong>SEI CERT (Software Engineering Institute CERT)</strong></p>
-<ul>
-<li>O SEI CERT Coding Standards fornece orientações detalhadas sobre práticas de codificação segura para evitar diversas vulnerabilidades, incluindo a enumeração de usuários.</li>
-</ul>
-</li>
-<li><p><strong>CVE (Common Vulnerabilities and Exposures)</strong></p>
-<ul>
-<li>Múltiplas entradas são regularmente catalogadas no banco de dados CVE.</li>
-</ul>
-</li>
-<li><p><strong>NVD (National Vulnerability Database)</strong></p>
+<li><strong>NVD (National Vulnerability Database)</strong>
 <ul>
 <li>Acrescenta ao CVE informações adicionais, incluindo classificações de risco (CVSS) e detalhes técnicos sobre a enumeração de usuários.</li>
 </ul>
@@ -296,7 +291,7 @@ solicitante (tenant), exigindo então as credenciais de acesso.</p>
 <h3 id="metodologia-programática">Metodologia Programática</h3>
 <p>Inspecionando o código-fonte do serviço <a href="https://login.microsoftonline.com">https://login.microsoftonline.com</a>, e analisando os pacotes enviados pela rede,
 encontramos o <em>endpoint</em> <code>GetCredentialType</code>. Ao extrair o corpo da requisição, temos isso:</p>
-<pre><code class="lang-txt">curl --location 'https://login.microsoftonline.com/common/GetCredentialType?mkt=pt-BR' \
+<pre><code>curl --location 'https://login.microsoftonline.com/common/GetCredentialType?mkt=pt-BR' \
 --header 'accept: application/json' \
 --header 'accept-language: pt-BR,pt;q=0.7' \
 --header 'canary: {canaryHash}' \
@@ -355,11 +350,12 @@ de fato necessário na requisição.</p>
 <p><em>Obs: há outras mudanças no <code>json</code> que colaboram com a identificação, mas optei pelos itens acima por brevidade.</em></p>
 <h3 id="metodologia-expandida">Metodologia Expandida</h3>
 <p>Considerando que o serviço <a href="https://azure.microsoft.com/pt-br/products/devops">Azure DevOps</a> também usa o Microsoft Online, e sua <strong>url</strong> é acessível através de <code>https://dev.azure.com/{nomeDaOrganizacao}</code>,
-podemos fazer um <em>web scrapping</em> numa rede social, como o LinkedIn, e obter o nome principal de cada empresa. Com isso,
-testamos até obter um <strong>HttpStatus</strong> <code>200</code>:</p>
+podemos fazer um <em>web scrapping</em> numa rede social, como o LinkedIn, e obter o nome principal de cada empresa.</p>
+<p>Com isso, testamos até obter um <strong>HttpStatus</strong> <code>200</code>:</p>
 <pre><code>https://dev.azure.com/mcdonalds
 https://dev.azure.com/samsung
 https://dev.azure.com/ibm
+https://dev.azure.com/suaempresa
 ...
 https://dev.azure.com/microsoft
 </code></pre>

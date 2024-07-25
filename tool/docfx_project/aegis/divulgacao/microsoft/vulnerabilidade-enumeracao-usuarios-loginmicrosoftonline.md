@@ -32,19 +32,28 @@ diferentes para usuários existentes e não existentes, durante o processo de au
 
 ### Impacto
 Esta informação, aparentemente inofensiva, pode afetar de forma significativa a segurança da organização, já que a exposição 
-de credenciais de acesso contribuem para o aumento e eficácia de ataques subsequentes, como _**phishing**_, **força bruta** e 
-**engenharia social**.
+de credenciais de acesso contribuem para o aumento e eficácia de ataques subsequentes, como _**phishing**_, **engenharia social** e
+**força bruta**.
 
 #### 🔴 Phishing
 Ataque que tenta roubar seu dinheiro ou a sua identidade fazendo com que você revele informações pessoais, tais como números 
 de cartão de crédito, informações bancárias ou senhas em sites que fingem ser legítimos. Criminosos cibernéticos normalmente 
 fingem ser empresas confiáveis, amigos ou pessoas conhecidas em uma mensagem de email falsa, que contém um link para 
-um site de _"phishing"_ (falso). (Fonte: [Suporte Microsoft](https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44)).
+um site de _"phishing"_ (pescar). (Fonte: [Suporte Microsoft](https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44)).
 
-Um subconjunto dessa prática é o _spear phishing_, que trata da especialização do ataque, onde os invasores realizam pesquisas 
+Um subconjunto dessa prática é o _spear phishing_ (pescar na lança), que trata da especialização do ataque, onde os invasores realizam pesquisas 
 extensas sobre os alvos pretendidos. Essa alta personalização visa não só indivíduos, como empresas específicas, ocasionando 
 fraudes financeiras, manipulação de preços de ações, espionagem ou roubo de dados confidenciais para revenda. Podem ser 
 projetados também para infectar dispositivos com _malware_. (Fonte: [Kaspersky Resource Center](https://www.kaspersky.com.br/resource-center/definitions/spear-phishing))
+
+#### 🔴 Engenharia Social
+Os ataques de engenharia social manipulam as emoções e os instintos das pessoas de maneiras que comprovadamente a levam a compartilhar
+informações que não deveriam compartilhar, baixar software que não deveriam baixar, visitar sites que não deveriam visitar, 
+enviar dinheiro para criminosos ou cometer outros erros que comprometam sua segurança pessoal ou organizacional. (Fonte: [IBM Think](https://www.ibm.com/br-pt/topics/social-engineering)).
+
+Além dos já citados _phishing_ e _spear phishing_, temos o _baiting_ (iscar pela curiosidade), _tailgating_ (carona no dispositivo desbloqueado),
+_pretexting_ (o falso samaritano digital), _Quid pro quo_ (serviços desejáveis, porém falsos, em troca da informação), _scareware_ (manipular pelo medo)
+e _watering hole_ (um serviço real é infectado).
 
 #### 🔴 Força bruta
 Um ataque de força bruta usa o método de tentativa e erro para adivinhar informações de login, chaves de criptografia ou 
@@ -72,32 +81,36 @@ Vale destaque aqui para as senhas mais curiosas, utilizadas no Brasil, no ano de
 
 Fonte: [Nordpass](https://nordpass.com/es/most-common-passwords-list/)
 
-- Engenharia Social: informação sobre usuários válidos pode ser utilizada para enganar funcionários ou usuários e obter mais dados sensíveis.
-- Comprometimento de informações sensíveis dos usuários.
-- Potencial acesso não autorizado aos recursos da empresa.
+### Relevância
+Políticas robustas de controle de acesso, como multifator ou _zero trust_, limitam o acesso dos cibercriminosos, mas a falta de 
+respostas uniformes durante este acesso, abre caminho para a vulnerabilidade de enumeração de usuários, cujo risco é reconhecido
+por várias organizações de segurança:
 
+#### OWASP (Open Web Application Security Project)
+Frequentemente mencionada no OWASP Top 10 e citado nas diretrizes do [Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#authentication-responses), 
+podemos destacar aqui suas demais categorias:
 
-A enumeração de usuários é reconhecida por várias organizações de segurança como uma vulnerabilidade de risco significativo:
+- [A1:2021 - Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
+- [A7:2021 - Identification and Authentication Failures](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/)
+- [A9:2017 - Using Components with Known Vulnerabilities](https://owasp.org/www-project-top-ten/2017/A9_2017-Using_Components_with_Known_Vulnerabilities)
 
-**OWASP (Open Web Application Security Project)**
-- Frequentemente mencionada no OWASP Top 10;
-- Presente nas categorias:
-    - A7:2017 – Cross-Site Scripting (XSS);
-    - A9:2017 – Using Components with Known Vulnerabilities;
-- Citado nas diretrizes do OWASP Authentication Cheat Sheet.
+#### NIST (National Institute of Standards and Technology)
+A prática é abordada pelo [NIST SP 800-63B: Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63b.html), 
+tópico 8: Threats and Security Considerations.
 
-- **NIST (National Institute of Standards and Technology)**
-    - A prática é abordada pelo NIST SP 800-63B: Digital Identity Guidelines;
+#### ISO (International Organization for Standardization)
+Embora não mencione especificamente a enumeração de usuários, as diretrizes de segurança da [ISO/IEC 27001](https://www.iso.org/standard/27001) 
+e [ISO/IEC 27034](https://www.iso.org/standard/44378.html) ressaltam, respectivamente, a importância de proteger informações 
+de autenticação e adoção de práticas seguras de desenvolvimento.
 
-- **ISO (International Organization for Standardization)**
-    - ISO/IEC 27001: embora não mencione especificamente a enumeração de usuários, as diretrizes de segurança ressaltam a importância de proteger informações de autenticação.
-    - ISO/IEC 27034: focado em segurança de aplicações, inclui práticas para mitigar riscos como a enumeração de usuários.
+#### SEI CERT (Software Engineering Institute CERT)
+O SEI CERT Coding Standards fornece [10 práticas de codificação segura](https://wiki.sei.cmu.edu/confluence/display/seccode/Top+10+Secure+Coding+Practices) 
+para evitar diversas vulnerabilidades. Dentre elas, vale destaque para o item 8: **Practice defense in depth**, cuja orientação
+é assegurar mais de uma camada de proteção, combinando técnicas para reduzir as lacunas de segurança.
 
-- **SEI CERT (Software Engineering Institute CERT)**
-    - O SEI CERT Coding Standards fornece orientações detalhadas sobre práticas de codificação segura para evitar diversas vulnerabilidades, incluindo a enumeração de usuários.
-
-- **CVE (Common Vulnerabilities and Exposures)**
-    - Múltiplas entradas são regularmente catalogadas no banco de dados CVE.
+#### CVE (Common Vulnerabilities and Exposures)
+Múltiplas entradas de enumeração de usuários são regularmente catalogadas no banco de dados CVE, como [WordPress](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5487),
+[OpenSSH](https://nvd.nist.gov/vuln/detail/cve-2016-6210), [GitLab](https://nvd.nist.gov/vuln/detail/cve-2021-4191).
 
 - **NVD (National Vulnerability Database)**
     - Acrescenta ao CVE informações adicionais, incluindo classificações de risco (CVSS) e detalhes técnicos sobre a enumeração de usuários.
