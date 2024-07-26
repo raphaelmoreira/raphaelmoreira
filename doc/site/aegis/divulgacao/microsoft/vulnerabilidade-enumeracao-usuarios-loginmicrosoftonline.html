@@ -92,35 +92,59 @@ o qual permite a enumeração de usuários.</p>
 <h2 id="sumário">Sumário</h2>
 <p>A vulnerabilidade permite que um atacante remoto descubra nomes válidos de usuários em aplicações que utilizam o serviço
 de autenticação do <strong>Microsoft Online</strong>, podendo ser explorado para realização de ataques direcionados.</p>
-<p>A descoberta foi comunicada ao <a href="https://msrc.microsoft.com/">Microsoft Security Response Center (MSRC)</a>, sob o <em>external tracking ID</em> <code>microsoft_bounty_1</code>.</p>
+<h3 id="relato">Relato</h3>
+<p>A descoberta foi devidamente relatada ao <a href="https://msrc.microsoft.com/">Microsoft Security Response Center (MSRC)</a>, via
+<a href="https://www.microsoft.com/en-us/msrc/bounty">Microsoft Bug Bounty Program</a>, seguindo as diretrizes de divulgação responsável
+para garantir a mitigação adequada e a proteção de possíveis usuários afetados. Dado que o evento não foi considerado uma
+vulnerabilidade, torno público o cenário com o intuito de alinhar entendimento sobre quais contextos a vulnerabilidade aqui
+citada, deve ser considerada um risco.</p>
+<ul>
+<li><strong>Identificador</strong>: microsoft_bounty_1¹ (<em>external tracking ID</em>)</li>
+<li><strong>Categoria</strong>: Enumeração de Usuários</li>
+<li><strong>Gravidade</strong>: 8.8/Alta</li>
+<li><strong>CVSS</strong>: <a href="https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N">CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N</a></li>
+</ul>
+<blockquote>
+<p><em>¹ dado que o item não foi considerado uma ameaça, nenhum código CVE foi atribuído.</em></p>
+</blockquote>
+<h3 id="linha-do-tempo">Linha do Tempo</h3>
 <ul>
 <li><strong>Data da descoberta</strong>: 26 de Abril de 2024</li>
 <li><strong>Data da notificação ao MSRC</strong>: 27 de Abril de 2024</li>
 <li><strong>Data da análise pelo MSRC</strong>: 29 de Junho de 2024</li>
 <li><strong>Data da conclusão pelo MSRC¹</strong>: 12 de Junho de 2024</li>
 </ul>
-<blockquote>
-<p><strong>¹</strong> a vulnerabilidade foi devidamente relatada seguindo as diretrizes de divulgação responsável para garantir a
-mitigação adequada e a proteção de possíveis usuários afetados. Dado que o evento não foi considerado uma vulnerabilidade,
-torno público o cenário com o intuito de alinhar entendimento sobre quais contextos a vulnerabilidade aqui citada,
-deve ser considerada um risco.</p>
-</blockquote>
+<h3 id="resposta-obtida">Resposta Obtida</h3>
+<pre><code class="lang-txt">MSRC Email communication 12 de jun. de 2024, 22:31
+Subject: RE: MSRC Case microsoft_bounty_1
+
+Hello Raphael,
+
+Thank you for submitting this issue to Microsoft. We appreciate the time taken to submit this report. Upon investigation, we have determined that this is not considered a security vulnerability for servicing. 
+
+Please refer https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions#restrict-member-users-default-permissions
+
+As such this case is now closed.
+Thank you for working with us and we look forward to more reports from you in the future!
+
+Warm regards,
+MSRC
+</code></pre>
+<p>O <a href="https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions#restrict-member-users-default-permissions">link referido</a> fala
+sobre permissões de acesso entre usuários autenticados e visitantes, com o intuito de restrição. Contudo, não se aplica ao
+que será demonstrado a seguir, uma vez que é possível explorar a vulnerabilidade livremente.</p>
 <h2 id="detalhamento">Detalhamento</h2>
-<ul>
-<li><strong>Identificador</strong>: CVE-2024-XXXXX¹</li>
-<li><strong>Categoria</strong>: Enumeração de Usuários</li>
-<li><strong>Gravidade</strong>: Alta</li>
-</ul>
-<p><em>¹ dado que o item não foi considerado uma ameaça, nenhum código CVE foi atribuído até o momento.</em></p>
-<h3 id="descrição">Descrição</h3>
 <p>A enumeração de usuários é uma vulnerabilidade de segurança que permite a um atacante descobrir se determinados nomes de usuário
 estão presentes em um sistema. Esta vulnerabilidade ocorre quando um aplicativo revela, através de mensagens de erro, respostas
 diferentes para usuários existentes e não existentes, durante o processo de autenticação, registro ou recuperação de senha.</p>
+<h3 id="vetor-de-ataque">Vetor de Ataque</h3>
+<p>A vulnerabilidade foi identificada através de solicitações para o <em>endpoint</em> de autenticação do Microsoft Online, cujo
+comportamento das respostas pode revelar a existência de usuários.</p>
 <h3 id="impacto">Impacto</h3>
 <p>Esta informação, aparentemente inofensiva, pode afetar de forma significativa a segurança da organização, já que a exposição
 de credenciais de acesso contribuem para o aumento e eficácia de ataques subsequentes, como <em><strong>phishing</strong></em>, <strong>engenharia social</strong> e
 <strong>força bruta</strong>.</p>
-<h4 id="-phishing">🔴 Phishing</h4>
+<h4 id="phishing">Phishing</h4>
 <p>Ataque que tenta roubar seu dinheiro ou a sua identidade fazendo com que você revele informações pessoais, tais como números
 de cartão de crédito, informações bancárias ou senhas em sites que fingem ser legítimos. Criminosos cibernéticos normalmente
 fingem ser empresas confiáveis, amigos ou pessoas conhecidas em uma mensagem de email falsa, que contém um link para
@@ -129,14 +153,14 @@ um site de <em>&quot;phishing&quot;</em> (pescar). (Fonte: <a href="https://supp
 extensas sobre os alvos pretendidos. Essa alta personalização visa não só indivíduos, como empresas específicas, ocasionando
 fraudes financeiras, manipulação de preços de ações, espionagem ou roubo de dados confidenciais para revenda. Podem ser
 projetados também para infectar dispositivos com <em>malware</em>. (Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/spear-phishing">Kaspersky Resource Center</a>)</p>
-<h4 id="-engenharia-social">🔴 Engenharia Social</h4>
+<h4 id="engenharia-social">Engenharia Social</h4>
 <p>Os ataques de engenharia social manipulam as emoções e os instintos das pessoas de maneiras que comprovadamente a levam a compartilhar
 informações que não deveriam compartilhar, baixar software que não deveriam baixar, visitar sites que não deveriam visitar,
 enviar dinheiro para criminosos ou cometer outros erros que comprometam sua segurança pessoal ou organizacional. (Fonte: <a href="https://www.ibm.com/br-pt/topics/social-engineering">IBM Think</a>).</p>
 <p>Além dos já citados <em>phishing</em> e <em>spear phishing</em>, temos o <em>baiting</em> (iscar pela curiosidade), <em>tailgating</em> (carona no dispositivo desbloqueado),
 <em>pretexting</em> (o falso samaritano digital), <em>Quid pro quo</em> (serviços desejáveis, porém falsos, em troca da informação), <em>scareware</em> (manipular pelo medo)
 e <em>watering hole</em> (um serviço real é infectado).</p>
-<h4 id="-força-bruta">🔴 Força bruta</h4>
+<h4 id="força-bruta">Força bruta</h4>
 <p>Um ataque de força bruta usa o método de tentativa e erro para adivinhar informações de login, chaves de criptografia ou
 encontrar uma página da Web oculta. Invasores trabalham com todas as combinações possíveis na esperança de acertar. (Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attac">Kaspersky Resource Center</a>)</p>
 <p>Um subtipo dessa forma de ataque é conhecido como <em>Password Spraying</em> (pulverização de senhas), que consiste na tentativa
@@ -209,42 +233,38 @@ e fáceis de adivinhar. [Fonte: <a href="https://www.kaspersky.com.br/resource-c
 <h3 id="relevância">Relevância</h3>
 <p>Políticas robustas de controle de acesso, como multifator ou <em>zero trust</em>, limitam o acesso dos cibercriminosos, mas a falta de
 respostas uniformes durante este acesso, abre caminho para a vulnerabilidade de enumeração de usuários, cujo risco é reconhecido
-por várias organizações de segurança:</p>
-<h4 id="owasp-open-web-application-security-project">OWASP (Open Web Application Security Project)</h4>
-<p>Frequentemente mencionada no OWASP Top 10 e citado nas diretrizes do <a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#authentication-responses">Authentication Cheat Sheet</a>,
-podemos destacar aqui suas demais categorias:</p>
+por várias organizações de segurança.</p>
 <ul>
-<li><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A1:2021 - Broken Access Control</a></li>
-<li><a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">A7:2021 - Identification and Authentication Failures</a></li>
-<li><a href="https://owasp.org/www-project-top-ten/2017/A9_2017-Using_Components_with_Known_Vulnerabilities">A9:2017 - Using Components with Known Vulnerabilities</a></li>
-</ul>
-<h4 id="nist-national-institute-of-standards-and-technology">NIST (National Institute of Standards and Technology)</h4>
-<p>A prática é abordada pelo <a href="https://pages.nist.gov/800-63-3/sp800-63b.html">NIST SP 800-63B: Digital Identity Guidelines</a>,
-tópico 8: Threats and Security Considerations.</p>
-<h4 id="iso-international-organization-for-standardization">ISO (International Organization for Standardization)</h4>
-<p>Embora não mencione especificamente a enumeração de usuários, as diretrizes de segurança da <a href="https://www.iso.org/standard/27001">ISO/IEC 27001</a>
-e <a href="https://www.iso.org/standard/44378.html">ISO/IEC 27034</a> ressaltam, respectivamente, a importância de proteger informações
-de autenticação e adoção de práticas seguras de desenvolvimento.</p>
-<h4 id="sei-cert-software-engineering-institute-cert">SEI CERT (Software Engineering Institute CERT)</h4>
-<p>O SEI CERT Coding Standards fornece <a href="https://wiki.sei.cmu.edu/confluence/display/seccode/Top+10+Secure+Coding+Practices">10 práticas de codificação segura</a>
-para evitar diversas vulnerabilidades. Dentre elas, vale destaque para o item 8: <strong>Practice defense in depth</strong>, cuja orientação
-é assegurar mais de uma camada de proteção, combinando técnicas para reduzir as lacunas de segurança.</p>
-<h4 id="cve-common-vulnerabilities-and-exposures">CVE (Common Vulnerabilities and Exposures)</h4>
-<p>Múltiplas entradas de enumeração de usuários são regularmente catalogadas no banco de dados CVE, como <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5487">WordPress</a>,
-<a href="https://nvd.nist.gov/vuln/detail/cve-2016-6210">OpenSSH</a>, <a href="https://nvd.nist.gov/vuln/detail/cve-2021-4191">GitLab</a>.</p>
+<li><p><strong>OWASP (Open Web Application Security Project)</strong>: frequentemente mencionada no <a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a> e citado nas diretrizes do <a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#authentication-responses">Authentication Cheat Sheet</a>,
+está presente também nas categorias:</p>
 <ul>
-<li><strong>NVD (National Vulnerability Database)</strong>
-<ul>
-<li>Acrescenta ao CVE informações adicionais, incluindo classificações de risco (CVSS) e detalhes técnicos sobre a enumeração de usuários.</li>
+<li><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A1:2021 - Broken Access Control</a>;</li>
+<li><a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">A7:2021 - Identification and Authentication Failures</a>;</li>
+<li><a href="https://owasp.org/www-project-top-ten/2017/A9_2017-Using_Components_with_Known_Vulnerabilities">A9:2017 - Using Components with Known Vulnerabilities</a>.
+<br><br></li>
 </ul>
 </li>
+<li><p><strong>NIST (National Institute of Standards and Technology)</strong>: a prática é abordada pelo <a href="https://pages.nist.gov/800-63-3/sp800-63b.html">NIST SP 800-63B: Digital Identity Guidelines</a>,
+tópico 8: <em>&quot;Threats and Security Considerations&quot;</em>.</p>
+</li>
+<li><p><strong>ISO (International Organization for Standardization)</strong>: embora não mencione especificamente a enumeração de usuários,
+as diretrizes de segurança da <a href="https://www.iso.org/standard/27001">ISO/IEC 27001</a> e <a href="https://www.iso.org/standard/44378.html">ISO/IEC 27034</a> ressaltam, respectivamente, a importância de proteger
+informações de autenticação e adoção de práticas seguras de desenvolvimento.</p>
+</li>
+<li><p><strong>SEI CERT (Software Engineering Institute CERT)</strong>: o SEI CERT Coding Standards fornece <a href="https://wiki.sei.cmu.edu/confluence/display/seccode/Top+10+Secure+Coding+Practices">10 práticas de codificação segura</a>
+para evitar diversas vulnerabilidades. Dentre elas, podemos destacar o item 8: <em>&quot;Practice defense in depth&quot;</em>, cuja orientação
+é assegurar mais de uma camada de proteção, combinando técnicas para reduzir as lacunas de segurança.</p>
+</li>
+<li><p><strong>CVE (Common Vulnerabilities and Exposures)</strong>: além de sua definição base <a href="https://cwe.mitre.org/data/definitions/200.html">CWE-200: Exposure of Sensitive Information to an Unauthorized Actor</a>,
+muitos serviços e softwares conhecidos, como <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5487">WordPress</a>, <a href="https://nvd.nist.gov/vuln/detail/cve-2016-6210">OpenSSH</a> e <a href="https://nvd.nist.gov/vuln/detail/cve-2021-4191">GitLab</a>
+já marcaram presença. Múltiplas entradas de enumeração de usuários são <a href="https://www.opencve.io/cve?cvss=&amp;search=user+enumeration">regularmente catalogadas</a> no banco de dados da CVE.</p>
+</li>
+<li><p><strong>NVD (National Vulnerability Database)</strong>: enriquece uma CVE e expande detalhes com referências técnicas, análise de impacto,
+orientações de remediação e classificações de risco (CVSS).</p>
+</li>
 </ul>
-<h3 id="vetor-de-ataque">Vetor de Ataque</h3>
-<p>A vulnerabilidade foi identificada através de solicitações para o <em>endpoint</em> de autenticação do Microsoft Online, cujo
-comportamento das respostas pode revelar a existência de usuários.</p>
 <h2 id="método-de-exploração">Método de Exploração</h2>
-<p>No portal <a href="https://learn.microsoft.com/en-us/entra/identity/authentication/overview-authentication">Azure AD (Microsoft Entra ID)</a>,
-registre uma aplicação através do <a href="https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application">App Registration</a>
+<p>No portal <a href="https://learn.microsoft.com/en-us/entra/identity/authentication/overview-authentication">Azure AD (Microsoft Entra ID)</a>, registre uma aplicação através do <a href="https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application">App Registration</a>
 usando como método o <a href="https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens">Access Token</a>. Conceda as permissões
 básicas <code>email</code> e <code>User.Read</code> por meio do <a href="https://developer.microsoft.com/pt-BR/graph/graph-explorer">Microsoft Graph</a>.</p>
 <p>A partir desse registro, você obterá o <code>appId</code>, parâmetro essencial para a construção da <strong>url</strong> de autenticação que irá identificá-lo
@@ -379,28 +399,52 @@ empresa alvo. A partir dos nomes e sobrenomes, é possível gerar todas as combi
 através do <strong>hashcat</strong>. Com a massa de dados pronta, basta deixar a força bruta agir através do <software>.</software></p>
 <p>Aquele usuário que não tiver um 2º fator de segurança, fatalmente estará sujeito a ter suas credenciais quebradas.</p>
 <h2 id="mitigação-e-recomendações">Mitigação e Recomendações</h2>
-<p>Dentre as organizações e padrões de segurança existente, cito abaixo as que identificam a enumeração de usuários como uma
-vulnerabilidade de risco:</p>
+<p>Para mitigar a vulnerabilidade de enumeração de usuários, é essencial implementar medidas de segurança robustas que dificultem
+a exploração dessa falha. A seguir, são apresentadas recomendações baseadas nas melhores práticas de segurança e diretrizes
+de órgãos renomados como OWASP, NIST, e CERT:</p>
 <ul>
-<li>Respostas Uniformes: implementar respostas de erro padronizadas sem revelando detalhes sobre sua existência.</li>
-<li>Verificações contra adulteração: avaliações robustas na requisição devem garantir que o evento não possa ser explorado.</li>
-<li>Rate Limiting: aplicar limites de taxa em tentativas de login para dificultar a exploração automatizada.</li>
-<li>Monitoramento e Auditoria: registrar tentativas de login falhadas para identificar possíveis atividades suspeitas.</li>
+<li><p><strong>Uniformização das mensagens de erro</strong>: assegure-se de que todas as mensagens de erro durante o processo de autenticação
+sejam uniformes, não fornecendo pistas sobre a validade dos nomes de usuários. O mesmo vale para tempo de resposta da requisição.</p>
+</li>
+<li><p><strong>Limitação de tentativas de login</strong>: implemente uma política de limitação de tentativas de login. Após um número predefinido
+de tentativas falhas, bloqueie temporariamente a conta ou exija um tempo de espera.</p>
+</li>
+<li><p><strong>Monitoramento e log de acessos</strong>: configure o monitoramento e logging de todas as tentativas de login. Analise esses logs
+regularmente para identificar padrões de ataques de enumeração.</p>
+</li>
+<li><p><strong>Utilização de Captchas</strong>: adicione CAPTCHAs no processo de login para dificultar a automação de ataques de enumeração.</p>
+</li>
+<li><p><strong>Verificações contra adulteração</strong>: avaliações robustas na requisição devem garantir que o evento não possa ser explorado.</p>
+</li>
 </ul>
 <h2 id="referências">Referências</h2>
 <ul>
-<li>ISO 27034-1: Information technology — Security techniques — Application security — Part 1: Overview and concepts</li>
-<li>SEI CERT Coding Standard for C</li>
-<li>OWASP Authentication Cheat Sheet</li>
-<li>NIST SP 800-63B: Digital Identity Guidelines</li>
+<li><p><strong><a href="https://www.iso.org/standard/72311.html">ISO/IEC 27034-1:2011 - Application security</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://insights.sei.cmu.edu/documents/1945/2017_003_001_503340.pdf">CERT Guide to Coordinated Vulnerability Disclosure</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://nvd.nist.gov/vuln">NVD (National Vulnerability Database)</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://www.first.org/cvss/calculator/4.0">CVSS (Common Vulnerability Scoring System) Calculator</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html">OWASP Authentication Cheat Sheet</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://pages.nist.gov/800-63-3/sp800-63b.html">NIST Special Publication 800-63B</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://insights.sei.cmu.edu/documents/1945/2017_003_001_503340.pdf">CERT Guide to Coordinated Vulnerability Disclosure</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://nvd.nist.gov/">NVD Vulnerability Database</a></strong>.</p>
+</li>
 </ul>
 <h2 id="conclusão">Conclusão</h2>
 <p>A descoberta desta vulnerabilidade no serviço de autenticação do Microsoft Online ressalta a importância contínua de revisões
-de segurança e conformidade com padrões internacionais. A mitigação rápida e eficaz é crucial para proteger os usuários e
-prevenir exploração maliciosa.</p>
-<p>A vulnerabilidade foi identificada através de uma análise de segurança seguindo
-os padrões <a href="https://owasp.org/">OWASP</a>, <a href="https://www.nist.gov/cyberframework">NIST</a>, <a href="https://www.iso.org/standard/44378.html">ISO 27034</a> e
-<a href="https://wiki.sei.cmu.edu/confluence/display/seccode">SEI CERT Coding Standard</a>.</p>
+de segurança e conformidade com padrões internacionais. No entanto, ao não considerar uma falha, acaba levantando a questão
+sobre quando a vulnerabilidade é tratada como um risco ou não.</p>
+<p>Empresas que aplicam testes de penetração, como <a href="https://trackerconsultoria.com.br/">Tracker</a>, <a href="https://desecsecurity.com/">Desec</a>,
+<a href="https://hackersec.com">HackerSec</a>, <a href="https://ravel.com.br/servico-de-pentest-teste-de-intrusao">Ravel</a>, <a href="https://www.kaspersky.com.br/enterprise-security/penetration-testing">Kaspersky</a>,
+<a href="https://www.tempest.com.br/">Tempest</a>, <a href="https://esecurity.com.br/pentest/">e-Security</a>, <a href="https://vantico.com.br/">Vantico</a> ou <a href="https://tivit.com/solucoes/cybersecurity/">Tivit</a>,
+vão sempre se guiar pelos padrões de mercado, logo, se faço uso do Microsoft Online, e ele permite enumerar usuários, não
+deveria ser considerado uma vulnerabilidade, da mesma forma que seria apontado, caso eu faça meu próprio sistema de login?</p>
 
 </article>
 
