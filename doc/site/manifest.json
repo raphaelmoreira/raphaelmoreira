@@ -171,6 +171,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/008-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/008-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/aegis/logo.png",
       "output": {
         "resource": {
