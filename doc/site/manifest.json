@@ -22,6 +22,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "aegis/divulgacao/microsoft/en-us/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.md",
+      "output": {
+        ".html": {
+          "relative_path": "aegis/divulgacao/microsoft/en-us/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "aegis/divulgacao/microsoft/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.md",
       "output": {
         ".html": {
@@ -175,6 +185,16 @@
       "output": {
         "resource": {
           "relative_path": "images/aegis/divulgacao/microsoft/008-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/aegis/divulgacao/microsoft/009-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline500x500.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/aegis/divulgacao/microsoft/009-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline500x500.png"
         }
       },
       "version": ""

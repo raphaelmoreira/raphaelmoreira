@@ -1,5 +1,8 @@
 # Divulgação de Vulnerabilidade: Enumeração de Usuários no Serviço de Autenticação Microsoft Online
 Data da publicação: 00/00/00 11:21
+<hr>
+
+🇧🇷 | [🇺🇸](en-us/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.md)
 
 ## Introdução
 Este documento visa descrever a vulnerabilidade de enumeração de usuários descoberta na autenticação [Microsoft Online](https://login.microsoftonline.com/),
@@ -210,26 +213,30 @@ Fonte: [Nordpass](https://nordpass.com/es/most-common-passwords-list/)
 
 Você pode ver maiores detalhes sobre o quão rápido uma senha pode ser descoberta, neste artigo do [Hive System](https://www.hivesystems.com/blog/are-your-passwords-in-the-green).
 
-![](../../../images/aegis/divulgacao/microsoft/008-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png)
+<a href="../../../images/aegis/divulgacao/microsoft/008-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.png" target="_blank">
+  <img src="../../../images/aegis/divulgacao/microsoft/009-vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline500x500.png" alt="Sua senha é segura?" />
+</a>
+
+<br>
+<br>
 
 ## Mitigação
 Para mitigar a vulnerabilidade de enumeração de usuários, é essencial implementar medidas de segurança robustas que dificultem
-a exploração dessa falha. A seguir, são apresentadas recomendações baseadas nas melhores práticas de segurança e diretrizes
-de órgãos renomados como OWASP, NIST, e CERT:
+sua exploração, como:
 
-- **Uniformização das mensagens de erro**: assegure-se de que todas as mensagens de erro durante o processo de autenticação
+- **Uniformização das mensagens de erro**: assegurar que todas as mensagens de erro durante o processo de autenticação
   sejam uniformes, não fornecendo pistas sobre a validade dos nomes de usuários. O mesmo vale para tempo de resposta da requisição.
 
 
-- **Limitação de tentativas de login**: implemente uma política de limitação de tentativas de login. Após um número predefinido
+- **Limitação de tentativas de login**: implemente uma política de limitação de tentativas de autenticação. Após um número predefinido
   de tentativas falhas, bloqueie temporariamente a conta ou exija um tempo de espera.
 
 
-- **Monitoramento e log de acessos**: configure o monitoramento e logging de todas as tentativas de login. Analise esses logs
+- **Monitoramento e log de acessos**: configure o monitoramento e auditoria de todas as tentativas de autenticação. Analise esses logs
   regularmente para identificar padrões de ataques de enumeração.
 
 
-- **Utilização de Captchas**: adicione CAPTCHAs no processo de login para dificultar a automação de ataques de enumeração.
+- **Utilização de captchas**: adicione CAPTCHAs no processo de autenticação para dificultar a automação de ataques de enumeração.
 
 
 - **Verificações contra adulteração**: avaliações robustas na requisição devem garantir que o evento não possa ser explorado.
@@ -280,9 +287,12 @@ quais contextos a vulnerabilidade aqui citada, deve ser considerada um risco.
 - **Identificador**: microsoft_bounty_1¹ (_external tracking ID_)
 - **Categoria**: Enumeração de Usuários
 - **Gravidade**: 8.8/Alta
-- **CVSS**: [CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N](https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N)
-
-> _¹ dado que o item não foi considerado uma ameaça (mesmo tendo sido comunicado por duas vezes), nenhum código CVE foi atribuído._
+- **[CVSS](https://www.first.org/cvss/calculator/4.0#CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N)**:
+  ```
+  CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:L/VA:N/SC:N/SI:N/SA:N
+  ```
+  
+_¹ dado que o item não foi considerado uma ameaça (mesmo tendo sido comunicado por duas vezes), nenhum código CVE foi atribuído._
 
 ### Linha do Tempo
 - **Data da descoberta**: 26 de Abril de 2024
@@ -309,7 +319,7 @@ MSRC
 ```
 
 O [link referido](https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions#restrict-member-users-default-permissions) fala sobre permissões de acesso entre usuários autenticados e visitantes, com o intuito de restrição. 
-Contudo, não se aplica ao que será demonstrado a seguir, uma vez que é possível explorar a vulnerabilidade livremente.
+Contudo, não se aplica ao que foi demonstrado neste documento, uma vez que é possível explorar a vulnerabilidade livremente.
 
 
 ## Referências
@@ -331,9 +341,9 @@ Contudo, não se aplica ao que será demonstrado a seguir, uma vez que é possí
 
 ## Conclusão
 A descoberta desta vulnerabilidade no serviço de autenticação do Microsoft Online ressalta a importância contínua de revisões 
-de segurança e conformidade com padrões internacionais. No entanto, ao não considerar uma falha, acaba levantando a questão
-sobre quando a vulnerabilidade é tratada como um risco ou não.
+de segurança e conformidade com padrões internacionais. No entanto, ao não considerar uma falha, levanta-se a questão sobre 
+quando a vulnerabilidade deve ser tratada como um risco ou não.
 
-Empresas que aplicam testes de penetração, como [Tracker](https://trackerconsultoria.com.br/), [Desec](https://desecsecurity.com/), [HackerSec](https://hackersec.com), [Ravel](https://ravel.com.br/servico-de-pentest-teste-de-intrusao), [Kaspersky](https://www.kaspersky.com.br/enterprise-security/penetration-testing),
+Empresas de segurança, que aplicam testes de penetração, como [Tracker](https://trackerconsultoria.com.br/), [Desec](https://desecsecurity.com/), [HackerSec](https://hackersec.com), [Ravel](https://ravel.com.br/servico-de-pentest-teste-de-intrusao), [Kaspersky](https://www.kaspersky.com.br/enterprise-security/penetration-testing),
 [Tempest](https://www.tempest.com.br/), [e-Security](https://esecurity.com.br/pentest/), [Vantico](https://vantico.com.br/) ou [Tivit](https://tivit.com/solucoes/cybersecurity/), guiam-se pelos padrões de mercado, logo, a autenticação 
 Microsoft Online também deveria estar sujeito ao mesmo.
