@@ -87,18 +87,18 @@
         <article data-uid="">
 <h1 id="divulgação-de-vulnerabilidade-enumeração-de-usuários-no-serviço-de-autenticação-microsoft-online">Divulgação de Vulnerabilidade: Enumeração de Usuários no Serviço de Autenticação Microsoft Online</h1>
 
-<p>Data da publicação: 00/00/00 11:21</p>
+<p>Data da publicação: 05/11/2024 17:35</p>
 <hr>
 <p>🇧🇷 | <a href="en-us/vulnerabilidade-enumeracao-usuarios-loginmicrosoftonline.html">🇺🇸</a></p>
 <h2 id="introdução">Introdução</h2>
-<p>Este documento visa descrever a vulnerabilidade de enumeração de usuários descoberta na autenticação <a href="https://login.microsoftonline.com/">Microsoft Online</a>,
+<p>Este documento visa descrever a vulnerabilidade de enumeração de usuários descoberta na autenticação do <a href="https://login.microsoftonline.com/">Microsoft Online</a>,
 passivo de exploração de forma visual e programática, em qualquer aplicação que se integre ao serviço.</p>
 <h2 id="exploração">Exploração</h2>
-<p>O vetor de ataque provém tanto da observação do comportamento das mensagens de retorno (visual), quanto pela estrutra de resposta do
+<p>O vetor de ataque provém tanto da observação do comportamento das mensagens de retorno (visual), quanto pela estrutura de resposta do
 <em>endpoint</em> respectivo (programático).</p>
 <h3 id="requisitos">Requisitos</h3>
-<p>Embora a vulnerabilidade esteja no serviço de autenticação Microsoft Online, os passos a seguir visa a exploração de forma
-breve, e em ambiente controlado e seguro, simulando a integração da aplicação fictícia <code>minha-app-com</code>.</p>
+<p>Embora a vulnerabilidade esteja no serviço de autenticação do Microsoft Online, os passos a seguir visam a exploração de forma
+breve, em ambiente controlado e seguro, simulando a integração de uma aplicação fictícia denominada <code>minha-app.com</code>:</p>
 <ul>
 <li>Acesse o portal <a href="https://learn.microsoft.com/en-us/entra/identity/authentication/overview-authentication">Azure AD (Microsoft Entra ID)</a> e registre uma nova aplicação através do <a href="https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app?tabs=certificate#register-an-application">App Registration</a>;</li>
 <li>Escolha o método <a href="https://learn.microsoft.com/en-us/entra/identity-platform/access-tokens">Access Token</a>;</li>
@@ -113,7 +113,7 @@ da <strong>url</strong> que redirecionará de, <code>minha-app.com</code> para <
 </code></pre>
 <p>Por fim, completamos com os parâmetros fixos:</p>
 <pre><code class="lang-txt">&amp;code_challenge_method=S256
-&amp;redirect_uri=https://minha-aplicacao/successo
+&amp;redirect_uri=https://minha-app.com/successo
 &amp;scope=https://graph.microsoft.com/email
 &amp;prompt=select_account
 &amp;sso_reload=true
@@ -123,7 +123,7 @@ da <strong>url</strong> que redirecionará de, <code>minha-app.com</code> para <
 </code></pre>
 <h3 id="metodologia-visual">Metodologia Visual</h3>
 <p>A <strong>url</strong> irá te levar até o serviço de autenticação da aplicação (<code>appId</code>), personalizado para o inquilino solicitante (<code>clientId</code>),
-o qual exigirá as credenciais de acesso. A partir da análise no padrão de resposta, é possível determinar quando o usuário existe ou não.</p>
+o qual exigirá as credenciais de acesso. A partir da análise no <strong>padrão de resposta</strong>, é possível determinar se o usuário existe ou não.</p>
 <table>
 <thead>
 <tr>
@@ -180,7 +180,7 @@ não há verificação ou consistência do objeto, quanto a sua manipulação, p
     &quot;username&quot;: &quot;abacate@avocado.com.br&quot;
 }'
 </code></pre>
-<p>Independente de qual formato acima você use, ambos irão retornar a seguinte estrutura:</p>
+<p>Independente de qual formato seja usado, ambos irão retornar a seguinte estrutura:</p>
 <pre><code class="lang-json">{
     &quot;Username&quot;: &quot;&quot;,
     &quot;Display&quot;: &quot;&quot;,
@@ -194,7 +194,7 @@ não há verificação ou consistência do objeto, quanto a sua manipulação, p
     &quot;apiCanary&quot;: &quot;&quot;
 }
 </code></pre>
-<p>Os campos <code>IfExistisResult</code> e <code>ThrottleStatus</code> respectivamente determinam se o usuário existe e o estado do controle do recurso.
+<p>Os campos <code>IfExistisResult</code> e <code>ThrottleStatus</code> determinam respectivamente a existência do usuário e o estado do recurso.
 Essa afirmação é possível por meio da seguinte observação de comportamento:</p>
 <ul>
 <li>Se <strong>usuário</strong> e <strong>domínio</strong> <u>não</u> existem, <code>IfExistisResult</code> e <code>ThrottleStatus</code> serão <code>1</code>;</li>
@@ -258,7 +258,7 @@ enviar dinheiro para criminosos ou cometer outros erros que comprometam sua segu
 e <em>watering hole</em> (um serviço real é infectado).</p>
 <h3 id="força-bruta">Força bruta</h3>
 <p>Um ataque de força bruta usa o método de tentativa e erro para adivinhar informações de login ou chaves de criptografia.
-Invasores trabalham com todas as combinações possíveis na esperança de acertar.(Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attac">Kaspersky Resource Center</a>)</p>
+Invasores trabalham com todas as combinações possíveis na esperança de acertar.(Fonte: <a href="https://www.kaspersky.com.br/resource-center/definitions/brute-force-attack">Kaspersky Resource Center</a>)</p>
 <p>Um subtipo dessa forma de ataque é conhecido como <em>Password Spraying</em> (pulverização de senhas), que consiste na tentativa
 exaustiva de usar a mesma senha em diversas contas antes de tentar outra. Ataques de pulverização de senhas costumam ser
 efetivos, porque muitos usuários, além de usarem as mesmas senhas em diferentes serviços, em geral são de simples memorização
@@ -402,13 +402,13 @@ quais contextos a vulnerabilidade aqui citada, deve ser considerada um risco.</p
 </code></pre>
 </li>
 </ul>
-<p><em>¹ dado que o item não foi considerado uma ameaça (mesmo tendo sido comunicado por duas vezes), nenhum código CVE foi atribuído.</em></p>
+<p><em>¹ dado que o item não foi considerado uma ameaça (mesmo tendo sido comunicado 2 vezes), nenhum código CVE foi atribuído.</em></p>
 <h3 id="linha-do-tempo">Linha do Tempo</h3>
 <ul>
 <li><strong>Data da descoberta</strong>: 26 de Abril de 2024</li>
 <li><strong>Data da notificação ao MSRC</strong>: 27 de Abril de 2024</li>
 <li><strong>Data da análise pelo MSRC</strong>: 29 de Junho de 2024</li>
-<li><strong>Data da conclusão pelo MSRC¹</strong>: 12 de Junho de 2024</li>
+<li><strong>Data da conclusão pelo MSRC</strong>: 12 de Junho de 2024</li>
 </ul>
 <h3 id="resposta-obtida">Resposta Obtida</h3>
 <pre><code class="lang-txt">MSRC Email communication 12 de jun. de 2024, 22:31
@@ -428,6 +428,36 @@ MSRC
 </code></pre>
 <p>O <a href="https://learn.microsoft.com/en-us/entra/fundamentals/users-default-permissions#restrict-member-users-default-permissions">link referido</a> fala sobre permissões de acesso entre usuários autenticados e visitantes, com o intuito de restrição.
 Contudo, não se aplica ao que foi demonstrado neste documento, uma vez que é possível explorar a vulnerabilidade livremente.</p>
+<p>Para tal, enviei um segundo relato, em <strong>09/08/2024</strong>, às <strong>14:05</strong>, demonstrando como automatizar o processo de descoberta. Contudo, a
+resposta obtida foi:</p>
+<pre><code class="lang-txt">MSRC Email communication 22 de ago. de 2024, 09:16
+Subject: RE: MSRC microsoft_bounty_2
+
+Hello
+
+Thank you for reporting this to Microsoft. Upon investigation, we have determined that this issue does not constitute a security vulnerability that meets our bar, since this information is necessary for customized login interfaces intending to use custom domain/login experience, and this information poses limited risk to confidentiality, integrity or availability of a user or the service.
+
+However, we have informed the team about this issue and they will continually assess the security of the service to keep our customers protected. 
+
+As such, we are closing this case.
+If you have any questions or concerns, please feel free to reach out.
+
+Regards
+MSRC
+</code></pre>
+<p>Em outras palavras, a possibilidade de enumeração de usuários e domínios não foi considerada uma vulnerabilidade, pois o
+comportamento &quot;é esperado&quot;, já que se caracteriza como um &quot;padrão aplicável ao recurso de interface personalizada&quot;, portanto,
+a informação obtida através de sua exploração, apresenta um &quot;risco limitado&quot;.</p>
+<h2 id="conclusão">Conclusão</h2>
+<p>A descoberta desta vulnerabilidade no serviço de autenticação do Microsoft Online ressalta a importância contínua de revisões
+de segurança e conformidade com padrões internacionais. No entanto, ao não considerar uma falha, levanta-se a questão sobre
+quando a vulnerabilidade deve ser tratada como um risco ou não.</p>
+<p>Empresas de segurança, que aplicam testes de penetração, como <a href="https://trackerconsultoria.com.br/">Tracker</a>, <a href="https://desecsecurity.com/">Desec</a>, <a href="https://hackersec.com">HackerSec</a>, <a href="https://ravel.com.br/servico-de-pentest-teste-de-intrusao">Ravel</a>, <a href="https://www.kaspersky.com.br/enterprise-security/penetration-testing">Kaspersky</a>,
+<a href="https://www.tempest.com.br/">Tempest</a>, <a href="https://esecurity.com.br/pentest/">e-Security</a>, <a href="https://vantico.com.br/">Vantico</a> ou <a href="https://tivit.com/solucoes/cybersecurity/">Tivit</a>, guiam-se pelos padrões de mercado, logo, a autenticação
+Microsoft Online também deveria estar sujeito ao mesmo.</p>
+<p>Se a vulnerabilidade de enumeração de usuários e domínios não é aplicável neste contexto, justificado pela necessidade de
+uma &quot;interface personalizada&quot;, qual é o limiar que separa um mecanismo próprio de autenticação, de um provedor externo, quando
+o mesmo teste de penetração acusa falha crítica em um, e passa pano na outra?</p>
 <h2 id="referências">Referências</h2>
 <ul>
 <li><p><strong><a href="https://www.iso.org/standard/72311.html">ISO/IEC 27034-1:2011 - Application security</a></strong>;</p>
@@ -442,18 +472,7 @@ Contudo, não se aplica ao que foi demonstrado neste documento, uma vez que é p
 </li>
 <li><p><strong><a href="https://pages.nist.gov/800-63-3/sp800-63b.html">NIST Special Publication 800-63B</a></strong>;</p>
 </li>
-<li><p><strong><a href="https://insights.sei.cmu.edu/documents/1945/2017_003_001_503340.pdf">CERT Guide to Coordinated Vulnerability Disclosure</a></strong>;</p>
-</li>
-<li><p><strong><a href="https://nvd.nist.gov/">NVD Vulnerability Database</a></strong>.</p>
-</li>
 </ul>
-<h2 id="conclusão">Conclusão</h2>
-<p>A descoberta desta vulnerabilidade no serviço de autenticação do Microsoft Online ressalta a importância contínua de revisões
-de segurança e conformidade com padrões internacionais. No entanto, ao não considerar uma falha, levanta-se a questão sobre
-quando a vulnerabilidade deve ser tratada como um risco ou não.</p>
-<p>Empresas de segurança, que aplicam testes de penetração, como <a href="https://trackerconsultoria.com.br/">Tracker</a>, <a href="https://desecsecurity.com/">Desec</a>, <a href="https://hackersec.com">HackerSec</a>, <a href="https://ravel.com.br/servico-de-pentest-teste-de-intrusao">Ravel</a>, <a href="https://www.kaspersky.com.br/enterprise-security/penetration-testing">Kaspersky</a>,
-<a href="https://www.tempest.com.br/">Tempest</a>, <a href="https://esecurity.com.br/pentest/">e-Security</a>, <a href="https://vantico.com.br/">Vantico</a> ou <a href="https://tivit.com/solucoes/cybersecurity/">Tivit</a>, guiam-se pelos padrões de mercado, logo, a autenticação
-Microsoft Online também deveria estar sujeito ao mesmo.</p>
 
 </article>
 
