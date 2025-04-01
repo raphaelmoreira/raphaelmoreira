@@ -22,13 +22,14 @@ docfx init
 ```
 Esse processo vai lhe direcionar nas etapas de criação de um novo site. Ele irá requisitas as informações:
 
-| Parâmetro                        | Descrição                                                      | Valor           |
-|----------------------------------|----------------------------------------------------------------|-----------------|
-| Name (mysite)                    | É o nome que você quer para seu site.                          | Meu Site        |
-| Generate .NET API documentation? | Caso você tenha código C#, este também será integrado ao site. | n               |
-| Markdown docs location (docs)    | Caminho onde consta a documentação em markdown (md).           | minha-categoria |
-| Enable site search?              | Adiciona um campo de busca em seu site.                        | y               |
-| Enable PDF?                      | Permite exportar o conteúdo das páginas em PDF                 | y               |
+| Parâmetro                         | Descrição                                                      | Valor                    |
+|-----------------------------------|----------------------------------------------------------------|--------------------------|
+| Name (mysite)                     | É o nome que você quer para seu site.                          | Meu Site                 |
+| Generate .NET API documentation?  | Caso você tenha código C#, este também será integrado ao site. | n                        |
+| ==> .NET projects locations (src) | Caso tenha escolhido 'y' para documentação da Api.             | caminho/ate/a/lib.csproj |
+| Markdown docs location (docs)     | Caminho onde consta a documentação em markdown (md).           | minha-categoria          |
+| Enable site search?               | Adiciona um campo de busca em seu site.                        | y                        |
+| Enable PDF?                       | Permite exportar o conteúdo das páginas em PDF                 | y                        |
 
 Isso vai lhe gerar os arquivos `toc.yml`, `docfx.json` e `index.md` na raiz da pasta `docfx_project`. Confirme.
 
